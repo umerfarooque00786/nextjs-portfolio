@@ -1,0 +1,25 @@
+{
+  "name": "professional-portfolio",
+  "version": "1.0.0",
+  "description": "A professional portfolio with GSAP and Locomotive Scroll",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server",
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "gsap": "^3.12.2",
+    "locomotive-scroll": "^4.1.4"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "keywords": [
+    "portfolio",
+    "gsap",
+    "locomotive-scroll",
+    "professional"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
