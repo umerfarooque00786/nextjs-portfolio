@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import { usePermissions } from '@/hooks/usePermissions';
 import { cn } from '@/lib/utils';
 
 const Navigation: React.FC = () => {
@@ -12,6 +13,7 @@ const Navigation: React.FC = () => {
   const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
   const { user, logout, isAuthenticated } = useAuth();
+  const { isAuthor } = usePermissions();
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -25,6 +27,7 @@ const Navigation: React.FC = () => {
   const authNavItems = [
     ...navItems,
     { name: 'Dashboard', href: '/dashboard' },
+    ...(isAuthor() ? [{ name: 'CMS', href: '/cms' }] : []),
   ];
 
   // Handle scroll effect

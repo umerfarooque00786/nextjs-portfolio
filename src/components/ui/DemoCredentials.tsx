@@ -13,14 +13,28 @@ export const DemoCredentials: React.FC = () => {
       email: 'admin@portfolio.com',
       password: 'admin123',
       description: 'Full access to admin dashboard with management features',
+      color: 'red'
+    },
+    {
+      type: 'Editor Account',
+      email: 'editor@portfolio.com',
+      password: 'editor123',
+      description: 'Can manage posts, projects, and media files',
       color: 'blue'
+    },
+    {
+      type: 'Author Account',
+      email: 'author@portfolio.com',
+      password: 'author123',
+      description: 'Can create and edit posts and media',
+      color: 'green'
     },
     {
       type: 'User Account',
       email: 'user@portfolio.com',
       password: 'user123',
       description: 'Standard user dashboard with personal features',
-      color: 'green'
+      color: 'gray'
     },
     {
       type: 'Demo Account',

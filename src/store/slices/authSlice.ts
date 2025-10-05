@@ -7,7 +7,8 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'editor' | 'author' | 'user';
+  permissions?: any[];
 }
 
 export interface AuthState {
@@ -59,6 +60,32 @@ export const loginUser = createAsyncThunk(
                 role: 'user'
               },
               token: 'user-jwt-token-12345'
+            });
+          }
+          // Editor credentials
+          else if (credentials.email === 'editor@portfolio.com' && credentials.password === 'editor123') {
+            resolve({
+              user: {
+                id: 'editor-1',
+                name: 'Content Editor',
+                email: credentials.email,
+                avatar: '/avatar.jpg',
+                role: 'editor'
+              },
+              token: 'editor-jwt-token-12345'
+            });
+          }
+          // Author credentials
+          else if (credentials.email === 'author@portfolio.com' && credentials.password === 'author123') {
+            resolve({
+              user: {
+                id: 'author-1',
+                name: 'Content Author',
+                email: credentials.email,
+                avatar: '/avatar.jpg',
+                role: 'author'
+              },
+              token: 'author-jwt-token-12345'
             });
           }
           // Demo user for testing
