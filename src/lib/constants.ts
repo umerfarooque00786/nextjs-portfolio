@@ -7,7 +7,7 @@ export const PERSONAL_INFO = {
   email: "00.umer786@gmail.com",
   phone: "+92 (300) 123-4567",
   location: "Pakistan",
-  bio: "Passionate full-stack developer with expertise in modern web technologies. I love creating beautiful, functional, and user-friendly applications that solve real-world problems.",
+  bio: "Passionate full-stack developer with 3+ years of experience in web development. I specialize in custom WordPress, PHP, Laravel, and Next.js development. Currently growing my skills and polishing my expertise in modern web technologies to deliver exceptional digital solutions.",
 };
 
 export const SOCIAL_LINKS: SocialLink[] = [
@@ -35,57 +35,57 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const SKILLS: Skill[] = [
   // Frontend
-  { name: "React", level: 90, category: "frontend" },
   { name: "Next.js", level: 85, category: "frontend" },
-  { name: "TypeScript", level: 88, category: "frontend" },
-  { name: "JavaScript", level: 92, category: "frontend" },
+  { name: "React", level: 88, category: "frontend" },
+  { name: "JavaScript", level: 90, category: "frontend" },
+  { name: "TypeScript", level: 80, category: "frontend" },
   { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
+  { name: "Tailwind CSS", level: 85, category: "frontend" },
   { name: "GSAP", level: 75, category: "frontend" },
-  
+
   // Backend
-  { name: "Node.js", level: 85, category: "backend" },
-  { name: "Express.js", level: 80, category: "backend" },
-  { name: "Python", level: 78, category: "backend" },
-  { name: "PostgreSQL", level: 82, category: "backend" },
-  { name: "MongoDB", level: 80, category: "backend" },
-  
+  { name: "PHP", level: 90, category: "backend" },
+  { name: "Laravel", level: 88, category: "backend" },
+  { name: "WordPress", level: 92, category: "backend" },
+  { name: "MySQL", level: 85, category: "backend" },
+  { name: "Node.js", level: 75, category: "backend" },
+
   // Tools
-  { name: "Git", level: 90, category: "tools" },
-  { name: "Docker", level: 75, category: "tools" },
-  { name: "AWS", level: 70, category: "tools" },
-  { name: "Vercel", level: 85, category: "tools" },
+  { name: "Git", level: 85, category: "tools" },
+  { name: "Vercel", level: 80, category: "tools" },
+  { name: "cPanel", level: 85, category: "tools" },
+  { name: "VS Code", level: 90, category: "tools" },
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: "1",
     title: "Next.js Portfolio with Authentication",
-    description: "A modern portfolio website with authentication system, smooth animations using GSAP and Locomotive Scroll, built with Next.js 15.",
+    description: "A modern portfolio website with authentication system, smooth animations using GSAP, and professional design. Built with Next.js 15 and TypeScript.",
     image: "/projects/portfolio.jpg",
-    technologies: ["Next.js", "TypeScript", "GSAP", "Locomotive Scroll", "Tailwind CSS"],
+    technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS", "Vercel"],
     githubUrl: "https://github.com/umerfarooque00786/nextjs-portfolio",
     liveUrl: "https://umer-portfolio.vercel.app",
     featured: true,
   },
   {
     id: "2",
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform built with Next.js, featuring user authentication, payment processing, and admin dashboard.",
+    title: "Custom WordPress Solutions",
+    description: "Multiple custom WordPress websites with custom themes, plugins, and advanced functionality. Focused on performance and user experience.",
     image: "/projects/ecommerce.jpg",
-    technologies: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Tailwind CSS"],
-    githubUrl: "https://github.com/umerfarooque00786/ecommerce-platform",
-    liveUrl: "https://umer-ecommerce.vercel.app",
+    technologies: ["WordPress", "PHP", "MySQL", "JavaScript", "CSS"],
+    githubUrl: "https://github.com/umerfarooque00786/wordpress-projects",
+    liveUrl: "#",
     featured: true,
   },
   {
     id: "3",
-    title: "React Task Manager",
-    description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+    title: "Laravel Web Applications",
+    description: "Full-stack web applications built with Laravel framework, featuring user authentication, database management, and RESTful APIs.",
     image: "/projects/taskmanager.jpg",
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Material-UI"],
-    githubUrl: "https://github.com/umerfarooque00786/react-task-manager",
-    liveUrl: "https://umer-taskmanager.vercel.app",
+    technologies: ["Laravel", "PHP", "MySQL", "Bootstrap", "JavaScript"],
+    githubUrl: "https://github.com/umerfarooque00786/laravel-projects",
+    liveUrl: "#",
     featured: false,
   },
 ];
@@ -93,29 +93,29 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCE: Experience[] = [
   {
     id: "1",
-    company: "Tech Company Inc.",
-    position: "Senior Frontend Developer",
-    duration: "2022 - Present",
+    company: "Freelance & Contract Work",
+    position: "Full Stack Developer",
+    duration: "2022 - Present (1+ Year)",
     description: [
-      "Led development of responsive web applications using React and Next.js",
-      "Implemented complex animations and interactions using GSAP and Framer Motion",
-      "Collaborated with design team to create pixel-perfect user interfaces",
-      "Mentored junior developers and conducted code reviews",
+      "Specialized in Next.js development for modern web applications",
+      "Built responsive and interactive user interfaces with React",
+      "Implemented server-side rendering and static site generation",
+      "Continuously learning and polishing skills in modern web technologies",
     ],
-    technologies: ["React", "Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
   },
   {
     id: "2",
-    company: "Digital Agency",
+    company: "Various Clients & Projects",
     position: "Full Stack Developer",
-    duration: "2020 - 2022",
+    duration: "2021 - 2022 (2 Years)",
     description: [
-      "Developed and maintained multiple client websites and web applications",
-      "Built RESTful APIs using Node.js and Express.js",
-      "Integrated third-party services and payment gateways",
-      "Optimized application performance and SEO",
+      "Developed custom WordPress themes and plugins",
+      "Built dynamic web applications using PHP and Laravel",
+      "Created RESTful APIs and database management systems",
+      "Delivered full-stack solutions from concept to deployment",
     ],
-    technologies: ["React", "Node.js", "Express.js", "MongoDB", "AWS"],
+    technologies: ["WordPress", "PHP", "Laravel", "MySQL", "JavaScript"],
   },
 ];
 

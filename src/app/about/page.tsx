@@ -74,7 +74,7 @@ export default function AboutPage() {
               About <span className="text-blue-400">Me</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Passionate about creating exceptional digital experiences through code
+              Full Stack Developer with 3+ years of experience in web development, specializing in modern technologies and continuously growing my skills
             </p>
           </div>
         </div>
@@ -101,21 +101,22 @@ export default function AboutPage() {
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate full-stack developer with over 5 years of experience
-                creating digital experiences that combine beautiful design with
-                powerful functionality. I specialize in modern web technologies
-                and love bringing ideas to life through code.
+                I'm a passionate full-stack developer with 3+ years of experience
+                in web development. I have 2 years of solid experience in custom WordPress
+                development, PHP, and Laravel as a full-stack developer, plus 1 year
+                of specialized experience in Next.js development.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                My journey in web development started with a curiosity about how
-                websites work, and it has evolved into a deep passion for creating
-                user-centric applications that solve real-world problems.
+                My journey started with WordPress and PHP development, where I learned
+                to create custom themes, plugins, and full-stack web applications.
+                I then expanded my skills to include Laravel for more complex backend
+                solutions and database management.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing my knowledge
-                through blog posts and mentoring. I believe in continuous learning
-                and staying up-to-date with the latest industry trends.
+                Currently, I'm growing and polishing my skills in modern technologies
+                like Next.js and React. I believe in continuous learning and constantly
+                work on improving my expertise to deliver better solutions. I'm passionate
+                about staying up-to-date with the latest industry trends and best practices.
               </p>
 
               <div className="grid grid-cols-2 gap-8 pt-8">
