@@ -2,9 +2,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -13,9 +15,11 @@ export default function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const router = useRouter();
+  const { login } = useAuth();
 
   useEffect(() => {
     if (!containerRef.current || !titleRef.current) return;
@@ -48,9 +52,10 @@ export default function LoginPage() {
     setIsLoading(true);
     setError('');
 
-    // Simulate API call
-    setTimeout(() => {
-      if (formData.email === 'admin@example.com' && formData.password === 'password') {
+    try {
+      const success = await login(formData.email, formData.password);
+
+      if (success) {
         // Success animation
         if (containerRef.current) {
           gsap.to(containerRef.current, {
@@ -58,8 +63,7 @@ export default function LoginPage() {
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
-              // Redirect or handle success
-              alert('Login successful!');
+              router.push('/dashboard');
             }
           });
         }
@@ -82,8 +86,27 @@ export default function LoginPage() {
           );
         }
       }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+      // Error shake animation
+      if (containerRef.current) {
+        gsap.fromTo(containerRef.current,
+          { x: 0 },
+          {
+            x: -10,
+            duration: 0.1,
+            ease: "power2.out",
+            yoyo: true,
+            repeat: 3,
+            onComplete: () => {
+              gsap.set(containerRef.current, { x: 0 });
+            }
+          }
+        );
+      }
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,9 +187,18 @@ export default function LoginPage() {
               Sign In
             </Button>
 
-            <div className="text-center">
+            <div className="text-center space-y-2">
               <p className="text-gray-400 text-sm">
                 Demo credentials: admin@example.com / password
+              </p>
+              <p className="text-gray-400 text-sm">
+                Don't have an account?{' '}
+                <button
+                  onClick={() => router.push('/signup')}
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Sign up here
+                </button>
               </p>
             </div>
           </form>

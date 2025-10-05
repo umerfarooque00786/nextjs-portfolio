@@ -79,17 +79,18 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm overflow-y-auto"
       onClick={handleOverlayClick}
     >
-      <div
-        ref={modalRef}
-        className={cn(
-          "relative w-full bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl my-8 mx-auto",
-          sizeClasses[size],
-          className
-        )}
-      >
+      <div className="min-h-full flex items-center justify-center p-4">
+        <div
+          ref={modalRef}
+          className={cn(
+            "relative w-full bg-gray-900 rounded-2xl border border-gray-700 shadow-2xl",
+            sizeClasses[size],
+            className
+          )}
+        >
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -100,7 +101,8 @@ export const Modal: React.FC<ModalProps> = ({
           </svg>
         </button>
 
-        {children}
+          {children}
+        </div>
       </div>
     </div>
   );

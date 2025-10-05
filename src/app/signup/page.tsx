@@ -2,9 +2,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/navigation';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -15,9 +17,11 @@ export default function SignupPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const router = useRouter();
+  const { signup } = useAuth();
   const stepsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,21 +67,61 @@ export default function SignupPage() {
       return;
     }
 
-    // Simulate API call
-    setTimeout(() => {
-      // Success animation
-      if (containerRef.current) {
-        gsap.to(containerRef.current, {
-          scale: 1.05,
-          duration: 0.3,
-          ease: "power2.out",
-          onComplete: () => {
-            alert('Account created successfully!');
-          }
-        });
+    try {
+      const success = await signup(formData.email, formData.password, formData.name);
+
+      if (success) {
+        // Success animation
+        if (containerRef.current) {
+          gsap.to(containerRef.current, {
+            scale: 1.05,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => {
+              router.push('/dashboard');
+            }
+          });
+        }
+      } else {
+        setError('Failed to create account. Please try again.');
+        // Error shake animation
+        if (containerRef.current) {
+          gsap.fromTo(containerRef.current,
+            { x: 0 },
+            {
+              x: -10,
+              duration: 0.1,
+              ease: "power2.out",
+              yoyo: true,
+              repeat: 3,
+              onComplete: () => {
+                gsap.set(containerRef.current, { x: 0 });
+              }
+            }
+          );
+        }
       }
+    } catch (error) {
+      setError('An error occurred. Please try again.');
+      // Error shake animation
+      if (containerRef.current) {
+        gsap.fromTo(containerRef.current,
+          { x: 0 },
+          {
+            x: -10,
+            duration: 0.1,
+            ease: "power2.out",
+            yoyo: true,
+            repeat: 3,
+            onComplete: () => {
+              gsap.set(containerRef.current, { x: 0 });
+            }
+          }
+        );
+      }
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -204,9 +248,12 @@ export default function SignupPage() {
             <div className="text-center">
               <p className="text-gray-400 text-sm">
                 Already have an account?{' '}
-                <a href="/login" className="text-blue-400 hover:text-blue-300 font-semibold">
-                  Sign In
-                </a>
+                <button
+                  onClick={() => router.push('/login')}
+                  className="text-blue-400 hover:text-blue-300 underline"
+                >
+                  Sign in here
+                </button>
               </p>
             </div>
           </form>

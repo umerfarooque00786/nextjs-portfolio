@@ -2,16 +2,16 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import { AuthModal } from '@/components/auth/AuthModal';
 import { cn } from '@/lib/utils';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-  const { user, logout, login, signup, isAuthenticated } = useAuth();
+  const router = useRouter();
+  const { user, logout, isAuthenticated } = useAuth();
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -148,7 +148,7 @@ const Navigation: React.FC = () => {
                 </div>
               ) : (
                 <button
-                  onClick={() => setIsAuthModalOpen(true)}
+                  onClick={() => router.push('/login')}
                   className="nav-item px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
                 >
                   Sign In
@@ -239,7 +239,7 @@ const Navigation: React.FC = () => {
               </div>
             ) : (
               <button
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => router.push('/login')}
                 className="block w-full px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors text-left"
               >
                 Sign In
@@ -248,14 +248,6 @@ const Navigation: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Auth Modal */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onLogin={login}
-        onSignup={signup}
-      />
     </nav>
   );
 };
