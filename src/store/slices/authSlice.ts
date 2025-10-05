@@ -7,6 +7,7 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
+  role: 'admin' | 'user';
 }
 
 export interface AuthState {
@@ -31,21 +32,49 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      // For demo purposes, we'll simulate an API call
-      // Replace this with your actual API endpoint
+      // Demo credentials for testing
       const response = await new Promise<{ user: User; token: string }>((resolve, reject) => {
         setTimeout(() => {
-          if (credentials.email === 'admin@example.com' && credentials.password === 'password') {
+          // Admin credentials
+          if (credentials.email === 'admin@portfolio.com' && credentials.password === 'admin123') {
             resolve({
               user: {
-                id: '1',
-                name: 'Umer Farooque',
+                id: 'admin-1',
+                name: 'Umer Farooque (Admin)',
                 email: credentials.email,
-                avatar: '/avatar.jpg'
+                avatar: '/avatar.jpg',
+                role: 'admin'
+              },
+              token: 'admin-jwt-token-12345'
+            });
+          }
+          // User credentials
+          else if (credentials.email === 'user@portfolio.com' && credentials.password === 'user123') {
+            resolve({
+              user: {
+                id: 'user-1',
+                name: 'Portfolio User',
+                email: credentials.email,
+                avatar: '/avatar.jpg',
+                role: 'user'
+              },
+              token: 'user-jwt-token-12345'
+            });
+          }
+          // Demo user for testing
+          else if (credentials.email === 'demo@test.com' && credentials.password === 'demo123') {
+            resolve({
+              user: {
+                id: 'demo-1',
+                name: 'Demo User',
+                email: credentials.email,
+                avatar: '/avatar.jpg',
+                role: 'user'
               },
               token: 'demo-jwt-token-12345'
             });
-          } else {
+          }
+          else {
             reject(new Error('Invalid credentials'));
           }
         }, 1000);
@@ -75,7 +104,8 @@ export const signupUser = createAsyncThunk(
                 id: Date.now().toString(),
                 name: userData.name,
                 email: userData.email,
-                avatar: '/avatar.jpg'
+                avatar: '/avatar.jpg',
+                role: 'user'
               },
               token: 'demo-jwt-token-' + Date.now()
             });

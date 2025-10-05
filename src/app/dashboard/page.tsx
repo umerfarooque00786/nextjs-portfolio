@@ -3,6 +3,8 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useAuth } from '@/contexts/AuthContext';
+import { useAppSelector } from '@/store/hooks';
+import { useRouter } from 'next/navigation';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
 import Navigation from '@/components/ui/Navigation';
 import { Card } from '@/components/ui/Card';
@@ -10,10 +12,19 @@ import { Button } from '@/components/ui/Button';
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
+  const { user: reduxUser } = useAppSelector((state) => state.auth);
+  const router = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const activityRef = useRef<HTMLDivElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
+
+  // Redirect admin users to admin dashboard
+  useEffect(() => {
+    if (reduxUser?.role === 'admin') {
+      router.push('/admin');
+    }
+  }, [reduxUser, router]);
 
   useEffect(() => {
     if (!headerRef.current || !cardsRef.current || !activityRef.current || !actionsRef.current) return;

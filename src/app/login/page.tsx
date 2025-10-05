@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { DemoCredentials } from '@/components/ui/DemoCredentials';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loginUser, clearError } from '@/store/slices/authSlice';
 import { loginSchema, LoginFormData } from '@/lib/validationSchemas';
@@ -17,7 +18,7 @@ export default function LoginPage() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { isLoading, error, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { isLoading, error, isAuthenticated, user } = useAppSelector((state) => state.auth);
 
   // React Hook Form setup
   const {
@@ -32,10 +33,14 @@ export default function LoginPage() {
 
   // Redirect if already authenticated
   useEffect(() => {
-    if (isAuthenticated) {
-      router.push('/dashboard');
+    if (isAuthenticated && user) {
+      if (user.role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/dashboard');
+      }
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, user, router]);
 
   // Clear errors on component mount
   useEffect(() => {
@@ -82,7 +87,13 @@ export default function LoginPage() {
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
-              router.push('/dashboard');
+              // Redirect based on user role
+              const currentUser = result.payload.user;
+              if (currentUser.role === 'admin') {
+                router.push('/admin');
+              } else {
+                router.push('/dashboard');
+              }
             }
           });
         }
@@ -210,6 +221,9 @@ export default function LoginPage() {
           </form>
         </Card>
       </div>
+
+      {/* Demo Credentials */}
+      <DemoCredentials />
     </div>
   );
 }

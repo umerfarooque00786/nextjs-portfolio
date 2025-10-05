@@ -17,7 +17,7 @@ export default function SignupPage() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { isLoading, error, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { isLoading, error, isAuthenticated, user } = useAppSelector((state) => state.auth);
 
   // React Hook Form setup
   const {
@@ -33,10 +33,14 @@ export default function SignupPage() {
 
   // Redirect if already authenticated
   useEffect(() => {
-    if (isAuthenticated) {
-      router.push('/dashboard');
+    if (isAuthenticated && user) {
+      if (user.role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/dashboard');
+      }
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, user, router]);
 
   // Clear errors on component mount
   useEffect(() => {
@@ -88,6 +92,7 @@ export default function SignupPage() {
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
+              // New users always go to user dashboard
               router.push('/dashboard');
             }
           });
