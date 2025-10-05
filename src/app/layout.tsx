@@ -3,6 +3,8 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { ReduxProvider } from "@/components/ReduxProvider";
+import { AuthInitializer } from "@/components/AuthInitializer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,11 +56,14 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning={true}
       >
-        <AuthProvider>
-          <ClientLayout>
-            {children}
-          </ClientLayout>
-        </AuthProvider>
+        <ReduxProvider>
+          <AuthInitializer />
+          <AuthProvider>
+            <ClientLayout>
+              {children}
+            </ClientLayout>
+          </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

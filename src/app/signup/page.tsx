@@ -1,28 +1,47 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { useAuth } from '@/contexts/AuthContext';
+import { FormInput } from '@/components/ui/FormInput';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { signupUser, clearError } from '@/store/slices/authSlice';
+import { signupSchema, SignupFormData } from '@/lib/validationSchemas';
 
 export default function SignupPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const router = useRouter();
-  const { signup } = useAuth();
+  const dispatch = useAppDispatch();
+  const { isLoading, error, isAuthenticated } = useAppSelector((state) => state.auth);
+
+  // React Hook Form setup
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<SignupFormData>({
+    resolver: yupResolver(signupSchema),
+    mode: 'onChange',
+  });
   const stepsRef = useRef<HTMLDivElement>(null);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
+  // Clear errors on component mount
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   useEffect(() => {
     if (!containerRef.current || !titleRef.current || !stepsRef.current) return;
@@ -55,22 +74,13 @@ export default function SignupPage() {
     });
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-
-    // Validation
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      setIsLoading(false);
-      return;
-    }
+  const onSubmit = async (data: SignupFormData) => {
+    dispatch(clearError());
 
     try {
-      const success = await signup(formData.email, formData.password, formData.name);
+      const result = await dispatch(signupUser(data));
 
-      if (success) {
+      if (signupUser.fulfilled.match(result)) {
         // Success animation
         if (containerRef.current) {
           gsap.to(containerRef.current, {
@@ -83,7 +93,6 @@ export default function SignupPage() {
           });
         }
       } else {
-        setError('Failed to create account. Please try again.');
         // Error shake animation
         if (containerRef.current) {
           gsap.fromTo(containerRef.current,
@@ -101,8 +110,7 @@ export default function SignupPage() {
           );
         }
       }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
+    } catch (err) {
       // Error shake animation
       if (containerRef.current) {
         gsap.fromTo(containerRef.current,
@@ -119,17 +127,10 @@ export default function SignupPage() {
           }
         );
       }
-    } finally {
-      setIsLoading(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-800 to-black flex items-center justify-center p-4">
@@ -162,15 +163,13 @@ export default function SignupPage() {
 
         {/* Signup Card */}
         <Card ref={containerRef} variant="glass" className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <Input
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <FormInput
+              {...register('name')}
               type="text"
-              name="name"
               label="Full Name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
               placeholder="Enter your full name"
+              error={errors.name?.message}
               icon={
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -178,14 +177,12 @@ export default function SignupPage() {
               }
             />
 
-            <Input
+            <FormInput
+              {...register('email')}
               type="email"
-              name="email"
               label="Email Address"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
               placeholder="Enter your email"
+              error={errors.email?.message}
               icon={
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
@@ -193,15 +190,13 @@ export default function SignupPage() {
               }
             />
 
-            <Input
+            <FormInput
+              {...register('password')}
               type="password"
-              name="password"
               label="Password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-              placeholder="Create a password"
-              minLength={6}
+              placeholder="Create a strong password"
+              error={errors.password?.message}
+              showPasswordToggle
               icon={
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -209,15 +204,13 @@ export default function SignupPage() {
               }
             />
 
-            <Input
+            <FormInput
+              {...register('confirmPassword')}
               type="password"
-              name="confirmPassword"
               label="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
-              required
               placeholder="Confirm your password"
-              minLength={6}
+              error={errors.confirmPassword?.message}
+              showPasswordToggle
               icon={
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -239,10 +232,10 @@ export default function SignupPage() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full"
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
               size="lg"
             >
-              Create Account
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </Button>
 
             <div className="text-center">
