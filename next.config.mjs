@@ -1,15 +1,13 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-
-const repoName = 'nextjs-portfolio';
-
 const nextConfig = {
-  output: 'export',
-  images: { unoptimized: true },
-  // For GitHub Pages project site: https://<user>.github.io/<repo>
-  basePath: isProd ? `/${repoName}` : undefined,
-  assetPrefix: isProd ? `/${repoName}/` : undefined,
-  trailingSlash: true,
+  // Optimized for Vercel deployment
+  images: {
+    unoptimized: false,
+    domains: ['via.placeholder.com']
+  },
+  // Remove output: 'export' for Vercel (supports SSR)
+  // Remove basePath and assetPrefix (not needed for Vercel)
+  trailingSlash: false,
 };
 
 export default nextConfig;
