@@ -101,7 +101,7 @@ export default function AboutPage() {
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate full-stack developer with 3+ years of experience
+                I'm a passionate full-stack developer with 2+ years of experience
                 in web development. I have 2 years of solid experience in custom WordPress
                 development, PHP, and Laravel as a full-stack developer, plus 1 year
                 of specialized experience in Next.js development.
@@ -124,7 +124,7 @@ export default function AboutPage() {
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     Experience
                   </h3>
-                  <p className="text-3xl font-bold text-blue-600">5+ Years</p>
+                  <p className="text-3xl font-bold text-blue-600">2+ Years</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">

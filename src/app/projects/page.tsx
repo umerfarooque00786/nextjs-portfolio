@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from '@/components/ui/Navigation';
 import Footer from '@/components/ui/Footer';
 import { ProjectCard } from '@/components/ui/ProjectCard';
 import { PROJECTS } from '@/lib/constants';
-import { useFadeIn, useStaggerAnimation } from '@/hooks/useOptimizedGSAP';
 import { cn } from '@/lib/utils';
 
 export default function ProjectsPage() {
@@ -13,16 +14,48 @@ export default function ProjectsPage() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<'all' | 'featured'>('all');
 
-  // Use optimized animations
-  useFadeIn(heroRef, { duration: 1, stagger: 0.2 });
-  useStaggerAnimation(projectsRef, '.project-card', {
-    duration: 0.8,
-    stagger: 0.15,
-    scrollTrigger: {
-      start: 'top 80%',
-      toggleActions: 'play none none reverse'
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animation
+    if (heroRef.current) {
+      gsap.fromTo(heroRef.current.children,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power2.out'
+        }
+      );
     }
-  });
+
+    // Projects animation
+    if (projectsRef.current) {
+      const projectCards = projectsRef.current.querySelectorAll('.project-card');
+      gsap.fromTo(projectCards,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: projectsRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.killAll();
+    };
+  }, []);
 
   const filteredProjects = filter === 'all' 
     ? PROJECTS 

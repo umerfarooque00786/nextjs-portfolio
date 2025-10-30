@@ -4,13 +4,11 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { signupUser, clearError } from '@/store/slices/authSlice';
-import { signupSchema, SignupFormData } from '@/lib/validationSchemas';
 
 export default function SignupPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,8 +23,7 @@ export default function SignupPage() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<SignupFormData>({
-    resolver: yupResolver(signupSchema),
+  } = useForm({
     mode: 'onChange',
   });
   const stepsRef = useRef<HTMLDivElement>(null);
@@ -34,11 +31,7 @@ export default function SignupPage() {
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (user.role === 'admin') {
-        router.push('/admin');
-      } else {
-        router.push('/dashboard');
-      }
+      router.push('/');
     }
   }, [isAuthenticated, user, router]);
 
@@ -92,8 +85,8 @@ export default function SignupPage() {
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
-              // New users always go to user dashboard
-              router.push('/dashboard');
+              // Redirect to home
+              router.push('/');
             }
           });
         }

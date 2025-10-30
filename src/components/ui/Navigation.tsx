@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import { usePermissions } from '@/hooks/usePermissions';
 import { cn } from '@/lib/utils';
 
 const Navigation: React.FC = () => {
@@ -12,8 +11,8 @@ const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
   const { user, logout, isAuthenticated } = useAuth();
-  const { isAuthor } = usePermissions();
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -22,12 +21,6 @@ const Navigation: React.FC = () => {
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
-  ];
-
-  const authNavItems = [
-    ...navItems,
-    { name: 'Dashboard', href: '/dashboard' },
-    ...(isAuthor() ? [{ name: 'CMS', href: '/cms' }] : []),
   ];
 
   // Handle scroll effect
@@ -69,6 +62,13 @@ const Navigation: React.FC = () => {
       '-=0.5'
     );
   }, []);
+
+  const isActive = (href: string): boolean => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
@@ -119,20 +119,28 @@ const Navigation: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex items-baseline space-x-8">
-              {(isAuthenticated ? authNavItems : navItems).map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className={cn(
-                    "nav-item px-3 py-2 text-sm font-medium transition-all duration-300",
-                    "text-gray-300 hover:text-white hover:scale-105",
-                    "relative group"
-                  )}
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full" />
-                </button>
-              ))}
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item.href)}
+                    className={cn(
+                      "nav-item px-3 py-2 text-sm font-medium transition-all duration-300",
+                      "relative group",
+                      active
+                        ? "text-blue-400 font-semibold"
+                        : "text-gray-300 hover:text-white hover:scale-105"
+                    )}
+                  >
+                    {item.name}
+                    <span className={cn(
+                      "absolute bottom-0 left-0 h-0.5 bg-blue-500 transition-all duration-300",
+                      active ? "w-full" : "w-0 group-hover:w-full"
+                    )} />
+                  </button>
+                );
+              })}
             </div>
 
             {/* Auth Buttons */}
@@ -216,15 +224,23 @@ const Navigation: React.FC = () => {
         )}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900/95 backdrop-blur-md">
-          {(isAuthenticated ? authNavItems : navItems).map((item) => (
-            <button
-              key={item.name}
-              onClick={() => handleNavClick(item.href)}
-              className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors w-full text-left"
-            >
-              {item.name}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <button
+                key={item.name}
+                onClick={() => handleNavClick(item.href)}
+                className={cn(
+                  "block px-3 py-2 text-base font-medium rounded-md transition-colors w-full text-left",
+                  active
+                    ? "text-blue-400 font-semibold bg-gray-800"
+                    : "text-gray-300 hover:text-white hover:bg-gray-700"
+                )}
+              >
+                {item.name}
+              </button>
+            );
+          })}
 
           {/* Mobile Auth Buttons */}
           <div className="pt-4 border-t border-gray-700">

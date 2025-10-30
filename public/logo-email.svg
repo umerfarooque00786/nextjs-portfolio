@@ -1,0 +1,42 @@
+<svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="20" cy="20" r="18" fill="url(#gradient)" stroke="url(#borderGradient)" stroke-width="2"/>
+  
+  <!-- Letter U -->
+  <path d="M12 10 L12 18 Q12 24 20 24 Q28 24 28 18 L28 10" 
+        stroke="white" 
+        stroke-width="2.5" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  
+  <!-- Letter F -->
+  <path d="M14 26 L14 32 M14 26 L20 26 M14 29 L18 29" 
+        stroke="white" 
+        stroke-width="2" 
+        fill="none" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="45" y="16" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">
+    Umer
+  </text>
+  <text x="45" y="30" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#94A3B8">
+    Farooque
+  </text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A78BFA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
+

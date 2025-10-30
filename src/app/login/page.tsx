@@ -4,14 +4,11 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { DemoCredentials } from '@/components/ui/DemoCredentials';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loginUser, clearError } from '@/store/slices/authSlice';
-import { loginSchema, LoginFormData } from '@/lib/validationSchemas';
 
 export default function LoginPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -26,19 +23,14 @@ export default function LoginPage() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LoginFormData>({
-    resolver: yupResolver(loginSchema),
+  } = useForm({
     mode: 'onChange',
   });
 
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated && user) {
-      if (user.role === 'admin') {
-        router.push('/admin');
-      } else {
-        router.push('/dashboard');
-      }
+      router.push('/');
     }
   }, [isAuthenticated, user, router]);
 
@@ -87,13 +79,8 @@ export default function LoginPage() {
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
-              // Redirect based on user role
-              const currentUser = result.payload.user;
-              if (currentUser.role === 'admin') {
-                router.push('/admin');
-              } else {
-                router.push('/dashboard');
-              }
+              // Redirect to home
+              router.push('/');
             }
           });
         }

@@ -144,7 +144,7 @@ const About: React.FC = () => {
 
               <div ref={contentRef} className="space-y-6">
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  I'm a passionate full-stack developer with over 5 years of experience
+                  I'm a passionate full-stack developer with over 2 years of experience
                   creating digital experiences that combine beautiful design with
                   powerful functionality. I specialize in modern web technologies
                   and love bringing ideas to life through code.
@@ -162,7 +162,7 @@ const About: React.FC = () => {
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">
                       Experience
                     </h3>
-                    <p className="text-3xl font-bold text-blue-600">5+ Years</p>
+                    <p className="text-3xl font-bold text-blue-600">2+ Years</p>
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">

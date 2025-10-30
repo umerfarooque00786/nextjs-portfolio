@@ -26,59 +26,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   useEffect(() => {
     if (!cardRef.current) return;
 
-    const card = cardRef.current;
-    const content = contentRef.current;
     const title = titleRef.current;
     const desc = descRef.current;
     const tech = techRef.current;
     const buttons = buttonsRef.current;
 
-    // Initial state
+    // Show all content by default (no hover effect)
     gsap.set([title, desc, tech, buttons], {
-      opacity: 0,
-      y: 30
+      opacity: 1,
+      y: 0
     });
-
-    // Hover animations
-    const handleMouseEnter = () => {
-      gsap.to(card, {
-        scale: 1.02,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-
-      gsap.to([title, desc, tech, buttons], {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.out"
-      });
-    };
-
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-
-      gsap.to([title, desc, tech, buttons], {
-        opacity: 0,
-        y: 30,
-        duration: 0.3,
-        stagger: 0.05,
-        ease: "power2.in"
-      });
-    };
-
-    card.addEventListener('mouseenter', handleMouseEnter);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-    };
   }, []);
 
   const gradients = [
@@ -96,9 +53,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     <div
       ref={cardRef}
       className={cn(
-        "group relative overflow-hidden rounded-3xl cursor-pointer",
-        "h-80 md:h-96 transition-all duration-500",
-        "shadow-xl hover:shadow-2xl",
+        "relative overflow-hidden rounded-3xl cursor-pointer",
+        "h-80 md:h-96",
+        "shadow-xl",
         className
       )}
     >
@@ -109,7 +66,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       )} />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500" />
+      <div className="absolute inset-0 bg-black/20" />
 
       {/* Featured Badge */}
       {project.featured && (
