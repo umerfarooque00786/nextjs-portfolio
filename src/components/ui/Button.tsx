@@ -73,7 +73,7 @@ export const Button: React.FC<ButtonProps> = ({
     };
   }, [animate]);
 
-  const baseClasses = "inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group";
+  const baseClasses = "inline-flex items-center justify-center font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group cursor-pointer";
 
   const variantClasses = {
     primary: "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white focus:ring-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40",
@@ -108,9 +108,20 @@ export const Button: React.FC<ButtonProps> = ({
     >
       {variant === 'primary' && rippleEffect}
       {isLoading ? (
-        <div className="flex items-center relative z-10">
-          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
-          <span>Loading...</span>
+        <div className="flex items-center relative z-10 gap-2">
+          <div className="relative">
+            <div className="w-4 h-4 border-2 border-white/30 rounded-full animate-spin" style={{
+              borderTopColor: '#ffffff',
+              borderRightColor: 'rgba(255,255,255,0.3)',
+              borderBottomColor: 'rgba(255,255,255,0.3)',
+              borderLeftColor: 'rgba(255,255,255,0.3)',
+            }}></div>
+            <div className="absolute inset-0 w-4 h-4 border-2 border-transparent border-t-white/50 rounded-full animate-spin" style={{
+              animationDirection: 'reverse',
+              animationDuration: '0.6s',
+            }}></div>
+          </div>
+          <span>{children}</span>
         </div>
       ) : (
         <span className="relative z-10">{children}</span>

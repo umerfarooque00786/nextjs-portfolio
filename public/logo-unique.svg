@@ -1,0 +1,55 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="55" fill="url(#logoGradient)" opacity="0.1"/>
+  
+  <!-- Main U Shape -->
+  <path d="M30 40 C30 25, 45 20, 60 20 C75 20, 90 25, 90 40 L90 70 C90 85, 75 90, 60 90 C45 90, 30 85, 30 70 Z" 
+        fill="url(#logoGradient)" 
+        filter="url(#glow)"
+        opacity="0.9"/>
+  
+  <!-- Inner highlight -->
+  <path d="M35 42 C35 32, 45 28, 60 28 C75 28, 85 32, 85 42 L85 68 C85 78, 75 82, 60 82 C45 82, 35 78, 35 68 Z" 
+        fill="none" 
+        stroke="white" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  
+  <!-- Code brackets representing developer -->
+  <path d="M50 45 L45 50 L50 55" 
+        stroke="white" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        opacity="0.8"/>
+  
+  <path d="M70 45 L75 50 L70 55" 
+        stroke="white" 
+        stroke-width="3" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        opacity="0.8"/>
+  
+  <!-- Dot representing the user -->
+  <circle cx="60" cy="50" r="2" fill="white" opacity="0.9"/>
+  
+  <!-- Tech lines at bottom -->
+  <line x1="40" y1="75" x2="80" y2="75" stroke="white" stroke-width="2" opacity="0.6"/>
+  <line x1="45" y1="80" x2="75" y2="80" stroke="white" stroke-width="1.5" opacity="0.5"/>
+</svg>
+

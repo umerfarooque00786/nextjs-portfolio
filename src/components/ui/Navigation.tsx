@@ -192,13 +192,13 @@ const Navigation: React.FC = () => {
           <div className="flex-shrink-0 z-10">
             <button
               onClick={() => handleNavClick('#home')}
-              className="flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1"
+              className="flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1 cursor-pointer"
               aria-label="Home"
             >
               <img
-                src="/logo.svg"
-                alt="Umer Farooque Logo"
-                className="h-10 w-auto"
+                src="/logo-unique.svg"
+                alt="Portfolio Logo"
+                className="h-10 w-auto transition-transform duration-300 hover:rotate-6"
               />
             </button>
           </div>

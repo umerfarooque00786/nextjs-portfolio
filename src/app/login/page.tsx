@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { Logo } from '@/components/ui/Logo';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loginUser, clearError } from '@/store/slices/authSlice';
 
@@ -125,21 +126,33 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
-      {/* Background Animation */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Enhanced Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-500/10 via-purple-500/5 to-transparent rounded-full"></div>
       </div>
 
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+
       <div className="relative z-10 w-full max-w-md">
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Logo size="lg" />
+        </div>
+
         {/* Title */}
         <h1 
           ref={titleRef}
-          className="text-4xl font-bold text-center text-white mb-8 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+          className="text-4xl sm:text-5xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
         >
           Welcome Back
         </h1>
+        <p className="text-center text-gray-400 mb-8 text-sm sm:text-base">
+          Sign in to continue your journey
+        </p>
 
         {/* Login Card */}
         <Card ref={containerRef} variant="glass" className="p-8">
@@ -185,7 +198,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50"
               size="lg"
             >
               {isLoading ? 'Signing In...' : 'Sign In'}
@@ -199,7 +212,7 @@ export default function LoginPage() {
                 Don't have an account?{' '}
                 <button
                   onClick={() => router.push('/signup')}
-                  className="text-blue-400 hover:text-blue-300 underline"
+                  className="text-blue-400 hover:text-blue-300 underline cursor-pointer font-medium transition-colors"
                 >
                   Sign up here
                 </button>

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
+import { Logo } from '@/components/ui/Logo';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { signupUser, clearError } from '@/store/slices/authSlice';
 
@@ -131,22 +132,35 @@ export default function SignupPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-800 to-black flex items-center justify-center p-4">
-      {/* Background Animation */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-900/30 via-gray-900 via-blue-900/20 to-purple-900/30 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Enhanced Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-green-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-purple-500/10 via-blue-500/5 to-transparent rounded-full"></div>
       </div>
 
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+
       <div className="relative z-10 w-full max-w-md">
+        {/* Logo */}
+        <div className="flex justify-center mb-6">
+          <Logo size="lg" />
+        </div>
+
         {/* Title */}
         <h1 
           ref={titleRef}
-          className="text-4xl font-bold text-center text-white mb-4 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"
+          className="text-4xl sm:text-5xl font-bold text-center text-white mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
         >
           Join Us Today
         </h1>
+        <p className="text-center text-gray-400 mb-6 text-sm sm:text-base">
+          Create your account and start building
+        </p>
 
         {/* Steps Indicator */}
         <div ref={stepsRef} className="flex justify-center mb-8">
@@ -230,7 +244,7 @@ export default function SignupPage() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50"
               size="lg"
             >
               {isLoading ? 'Creating Account...' : 'Create Account'}
@@ -241,7 +255,7 @@ export default function SignupPage() {
                 Already have an account?{' '}
                 <button
                   onClick={() => router.push('/login')}
-                  className="text-blue-400 hover:text-blue-300 underline"
+                  className="text-purple-400 hover:text-purple-300 underline cursor-pointer font-medium transition-colors"
                 >
                   Sign in here
                 </button>

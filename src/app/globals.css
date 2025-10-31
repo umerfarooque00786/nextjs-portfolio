@@ -216,11 +216,28 @@ html.has-scroll-dragging {
     -webkit-overflow-scrolling: touch;
   }
   
-  /* Better touch targets - minimum 44x44px */
+    /* Better touch targets - minimum 44x44px */
   button, a[role="button"] {
     min-height: 44px;
     min-width: 44px;
   }
+}
+
+/* Cursor pointer for all interactive elements */
+button, 
+a,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Ensure disabled buttons don't have pointer */
+button:disabled,
+button[disabled],
+input:disabled {
+  cursor: not-allowed !important;
 }
 
 /* Improved focus states for accessibility */
