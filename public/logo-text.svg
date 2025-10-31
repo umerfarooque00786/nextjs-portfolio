@@ -1,0 +1,25 @@
+<svg width="280" height="120" viewBox="0 0 280 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .name-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 48px; font-weight: 700; fill: #1a1a1a; }
+      .title-text { font-family: 'Inter', 'Arial', sans-serif; font-size: 14px; font-weight: 400; letter-spacing: 2px; fill: #1a1a1a; }
+      @media (prefers-color-scheme: dark) {
+        .name-text { fill: #ffffff; }
+        .title-text { fill: #ffffff; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Name -->
+  <text x="140" y="50" text-anchor="middle" class="name-text">Umer Farooque</text>
+  
+  <!-- Title -->
+  <text x="140" y="75" text-anchor="middle" class="title-text">FRONT-END DEVELOPER</text>
+  
+  <!-- Horizontal line -->
+  <line x1="60" y1="85" x2="220" y2="85" stroke="#1a1a1a" stroke-width="1" opacity="0.3"/>
+  
+  <!-- For dark mode -->
+  <line x1="60" y1="85" x2="220" y2="85" stroke="#ffffff" stroke-width="1" opacity="0.3" class="dark-mode-line" style="display: none;"/>
+</svg>
+

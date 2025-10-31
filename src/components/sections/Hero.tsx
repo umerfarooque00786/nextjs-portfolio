@@ -133,17 +133,16 @@ const Hero: React.FC = () => {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white"
     >
-        {/* Background Elements */}
+        {/* Background Elements - Minimal black and white */}
         <div className="absolute inset-0 hero-bg-element">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-blue-500/5 to-transparent rounded-full" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gray-900/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gray-900/5 rounded-full blur-3xl" />
         </div>
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+        {/* Subtle Grid Pattern */}
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-[0.03] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -151,7 +150,7 @@ const Hero: React.FC = () => {
             {/* Main Title */}
             <h1
               ref={titleRef}
-              className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white leading-tight"
+              className="text-5xl sm:text-6xl lg:text-8xl font-bold text-gray-900 leading-tight"
             >
               {PERSONAL_INFO.name}
             </h1>
@@ -159,7 +158,7 @@ const Hero: React.FC = () => {
             {/* Subtitle */}
             <p
               ref={subtitleRef}
-              className="text-xl sm:text-2xl lg:text-3xl text-blue-400 font-light"
+              className="text-xl sm:text-2xl lg:text-3xl text-gray-600 font-light uppercase tracking-wider mt-2"
             >
               {PERSONAL_INFO.title}
             </p>
@@ -167,7 +166,7 @@ const Hero: React.FC = () => {
             {/* Description */}
             <p
               ref={descriptionRef}
-              className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 leading-relaxed"
+              className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 leading-relaxed mt-6"
             >
               {PERSONAL_INFO.bio}
             </p>
@@ -178,19 +177,19 @@ const Hero: React.FC = () => {
               onClick={handleScrollToProjects}
               className={cn(
                 "inline-flex items-center px-8 py-4 text-lg font-semibold",
-                "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
-                "rounded-full shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 active:shadow-md",
+                "bg-gray-900 text-white hover:bg-gray-800",
+                "rounded-md shadow-lg hover:shadow-xl active:shadow-md",
                 "transform transition-all duration-300 relative overflow-hidden group",
-                "hover:scale-105 active:scale-95",
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-                "before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-600 before:to-blue-500",
-                "before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                "hover:scale-105 active:scale-95 border-2 border-gray-900",
+                "focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white",
+                "before:absolute before:inset-0 before:bg-white before:opacity-0",
+                "hover:before:opacity-5 before:transition-opacity before:duration-300"
               )}
             >
-              <span className="relative z-10 flex items-center">
+              <span className="relative z-10 flex items-center gap-2">
                 View My Work
                 <svg
-                  className="ml-2 w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300"
+                  className="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -214,11 +213,11 @@ const Hero: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "social-item p-3 text-gray-400 hover:text-white",
+                    "social-item p-3 text-gray-600 hover:text-gray-900",
                     "transition-all duration-300 hover:scale-110 active:scale-95 transform",
-                    "rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-                    "bg-gray-800/30 hover:bg-gray-700/50 border border-gray-700/50 hover:border-blue-500/50",
-                    "shadow-sm hover:shadow-md hover:shadow-blue-500/20"
+                    "rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white",
+                    "bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-gray-900",
+                    "shadow-sm hover:shadow-lg"
                   )}
                   aria-label={link.name}
                 >
@@ -232,9 +231,9 @@ const Hero: React.FC = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="flex flex-col items-center space-y-2 text-gray-400">
+          <div className="flex flex-col items-center space-y-2 text-gray-600">
             <span className="text-sm font-medium">Scroll</span>
-            <div className="w-px h-16 bg-gradient-to-b from-gray-400 to-transparent" />
+            <div className="w-px h-16 bg-gradient-to-b from-gray-600 to-transparent" />
           </div>
         </div>
     </section>

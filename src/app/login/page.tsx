@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { Logo } from '@/components/ui/Logo';
+import { TextLogo } from '@/components/ui/TextLogo';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loginUser, clearError } from '@/store/slices/authSlice';
 
@@ -140,7 +140,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-6">
-          <Logo size="lg" />
+          <TextLogo size="lg" variant="dark" />
         </div>
 
         {/* Title */}
@@ -198,7 +198,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/50"
+              className="w-full shadow-lg hover:shadow-xl"
               size="lg"
             >
               {isLoading ? 'Signing In...' : 'Sign In'}

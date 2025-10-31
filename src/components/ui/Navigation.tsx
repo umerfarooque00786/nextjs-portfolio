@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { TextLogo } from '@/components/ui/TextLogo';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -182,25 +183,15 @@ const Navigation: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-800/50"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
+          : "bg-white/80 backdrop-blur-sm"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 z-10">
-            <button
-              onClick={() => handleNavClick('#home')}
-              className="flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1 cursor-pointer"
-              aria-label="Home"
-            >
-              <img
-                src="/logo-unique.svg"
-                alt="Portfolio Logo"
-                className="h-10 w-auto transition-transform duration-300 hover:rotate-6"
-              />
-            </button>
+            <TextLogo size="sm" variant="dark" onClick={() => handleNavClick('#home')} />
           </div>
 
           {/* Desktop Navigation */}
@@ -215,21 +206,18 @@ const Navigation: React.FC = () => {
                     className={cn(
                       "nav-item px-3 py-2 text-sm font-medium transition-all duration-300",
                       "relative group transform active:scale-95",
-                      "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-md",
+                      "focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white rounded-md",
                       active
-                        ? "text-blue-400 font-semibold scale-105"
-                        : "text-gray-300 hover:text-white hover:scale-105"
+                        ? "text-gray-900 font-semibold scale-105"
+                        : "text-gray-600 hover:text-gray-900 hover:scale-105"
                     )}
                     aria-current={active ? "page" : undefined}
                   >
                     <span className="relative z-10">{item.name}</span>
                     <span className={cn(
-                      "absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 rounded-full",
+                      "absolute bottom-0 left-0 h-0.5 bg-gray-900 transition-all duration-300 rounded-full",
                       active ? "w-full" : "w-0 group-hover:w-full"
                     )} />
-                    {active && (
-                      <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
-                    )}
                   </button>
                 );
               })}
@@ -239,12 +227,12 @@ const Navigation: React.FC = () => {
             <div className="flex items-center space-x-4 ml-8">
               {isAuthenticated ? (
                 <div className="flex items-center space-x-4">
-                  <span className="text-sm text-gray-300 hidden lg:inline">
+                  <span className="text-sm text-gray-600 hidden lg:inline">
                     Welcome, {user?.name}
                   </span>
                   <button
                     onClick={logout}
-                    className="nav-item px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 active:bg-red-800 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-red-600/30 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="nav-item px-4 py-2 text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 active:bg-gray-950 rounded-md transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border-2 border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
                   >
                     Logout
                   </button>
@@ -252,7 +240,7 @@ const Navigation: React.FC = () => {
               ) : (
                 <button
                   onClick={() => router.push('/login')}
-                  className="nav-item px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-blue-600/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="nav-item px-4 py-2 text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 active:bg-gray-950 rounded-md transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border-2 border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
                 >
                   Sign In
                 </button>
@@ -266,9 +254,9 @@ const Navigation: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "inline-flex items-center justify-center p-2.5 rounded-lg transition-all duration-300",
-                "text-gray-400 hover:text-white hover:bg-gray-800/50 active:bg-gray-800",
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-                isMobileMenuOpen && "bg-gray-800/50 text-white"
+                "text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200",
+                "focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white",
+                isMobileMenuOpen && "bg-gray-100 text-gray-900"
               )}
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -378,8 +366,8 @@ const Navigation: React.FC = () => {
                       "shadow-sm hover:shadow-md",
                       active && "active-nav-item",
                       active
-                        ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-blue-500/30 scale-105 font-semibold"
-                        : "text-gray-300 bg-gray-800/60 hover:bg-gray-700/70 hover:text-white border border-gray-700/50 hover:border-gray-600"
+                        ? "text-white bg-gray-900 shadow-lg scale-105 font-semibold border-2 border-gray-900"
+                        : "text-gray-600 bg-white hover:bg-gray-50 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-900"
                     )}
                     aria-current={active ? "page" : undefined}
                   >
@@ -398,7 +386,7 @@ const Navigation: React.FC = () => {
                     key={index}
                     className={cn(
                       "h-1.5 rounded-full transition-all duration-300",
-                      active ? "w-6 bg-blue-400" : "w-1.5 bg-gray-700"
+                      active ? "w-6 bg-gray-900" : "w-1.5 bg-gray-300"
                     )}
                   />
                 );
@@ -417,7 +405,7 @@ const Navigation: React.FC = () => {
             : "max-h-0 opacity-0 invisible"
         )}
       >
-        <div className="px-2 pt-2 pb-4 sm:px-3 bg-gray-900/98 backdrop-blur-lg border-t border-gray-800">
+        <div className="px-2 pt-2 pb-4 sm:px-3 bg-white/98 backdrop-blur-lg border-t border-gray-200">
           {/* Scrollable Navigation Items Container */}
           <div className="overflow-y-auto max-h-[60vh] pb-2 space-y-1.5 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-900 scrollbar-thumb-rounded-full">
             {navItems.map((item) => {
@@ -428,11 +416,11 @@ const Navigation: React.FC = () => {
                   onClick={() => handleNavClick(item.href)}
                   className={cn(
                     "block px-4 py-3.5 text-base font-medium rounded-lg transition-all duration-300 w-full text-left transform",
-                    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
+                    "focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white",
                     "active:scale-[0.98] shadow-sm hover:shadow-md",
                     active
-                      ? "text-blue-400 font-semibold bg-blue-500/15 border-l-4 border-blue-400 scale-[1.02] shadow-blue-500/20"
-                      : "text-gray-300 hover:text-white hover:bg-gray-800/60 hover:scale-[1.01] border-l-4 border-transparent hover:border-gray-700"
+                      ? "text-gray-900 font-semibold bg-gray-50 border-l-4 border-gray-900 scale-[1.02] shadow-sm"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50 hover:scale-[1.01] border-l-4 border-transparent hover:border-gray-300"
                   )}
                   aria-current={active ? "page" : undefined}
                 >
@@ -458,13 +446,13 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Mobile Auth Buttons */}
-          <div className="pt-4 mt-2 border-t border-gray-700/50">
+          <div className="pt-4 mt-2 border-t border-gray-200">
             {isAuthenticated ? (
               <div className="space-y-2">
-                <div className="px-4 py-2 text-sm text-gray-300 bg-gray-800/50 rounded-lg">
+                <div className="px-4 py-2 text-sm text-gray-600 bg-gray-50 rounded-lg">
                   <span className="flex items-center">
                     <svg
-                      className="mr-2 w-4 h-4 text-blue-400"
+                      className="mr-2 w-4 h-4 text-gray-900"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -481,7 +469,7 @@ const Navigation: React.FC = () => {
                 </div>
                 <button
                   onClick={logout}
-                  className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white bg-red-600 hover:bg-red-700 active:bg-red-800 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-red-600/30 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white bg-gray-900 hover:bg-gray-800 active:bg-gray-950 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border-2 border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
                 >
                   <svg
                     className="mr-2 w-5 h-5"
@@ -505,7 +493,7 @@ const Navigation: React.FC = () => {
                   setIsMobileMenuOpen(false);
                   router.push('/login');
                 }}
-                className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-blue-600/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white bg-gray-900 hover:bg-gray-800 active:bg-gray-950 rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg border-2 border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900"
               >
                 <svg
                   className="mr-2 w-5 h-5"

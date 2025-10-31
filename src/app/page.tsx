@@ -10,7 +10,7 @@ import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <main className="scroll-smooth">
         <section id="home">
