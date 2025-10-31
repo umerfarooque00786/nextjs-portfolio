@@ -209,8 +209,7 @@ export default function LoginPage() {
         </Card>
       </div>
 
-      {/* Demo Credentials */}
-      <DemoCredentials />
+      {/* Demo credentials section removed (component not defined) */}
     </div>
   );
 }

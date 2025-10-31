@@ -55,7 +55,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className={cn(
         "relative overflow-hidden rounded-3xl cursor-pointer",
         "h-80 md:h-96",
-        "shadow-xl",
+        "shadow-xl transition-all duration-300",
+        "hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98]",
+        "transform-gpu",
         className
       )}
     >

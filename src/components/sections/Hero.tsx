@@ -179,25 +179,30 @@ const Hero: React.FC = () => {
               className={cn(
                 "inline-flex items-center px-8 py-4 text-lg font-semibold",
                 "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
-                "rounded-full shadow-lg hover:shadow-xl",
-                "transform transition-all duration-300",
-                "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                "rounded-full shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 active:shadow-md",
+                "transform transition-all duration-300 relative overflow-hidden group",
+                "hover:scale-105 active:scale-95",
+                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
+                "before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-600 before:to-blue-500",
+                "before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
               )}
             >
-              View My Work
-              <svg
-                className="ml-2 w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
+              <span className="relative z-10 flex items-center">
+                View My Work
+                <svg
+                  className="ml-2 w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </span>
             </button>
 
             {/* Social Links */}
@@ -210,7 +215,10 @@ const Hero: React.FC = () => {
                   rel="noopener noreferrer"
                   className={cn(
                     "social-item p-3 text-gray-400 hover:text-white",
-                    "transition-colors duration-300 hover:scale-110 transform"
+                    "transition-all duration-300 hover:scale-110 active:scale-95 transform",
+                    "rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
+                    "bg-gray-800/30 hover:bg-gray-700/50 border border-gray-700/50 hover:border-blue-500/50",
+                    "shadow-sm hover:shadow-md hover:shadow-blue-500/20"
                   )}
                   aria-label={link.name}
                 >
