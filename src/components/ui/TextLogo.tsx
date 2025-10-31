@@ -44,8 +44,18 @@ export const TextLogo: React.FC<TextLogoProps> = ({
       )}
       aria-label="Home"
     >
+      {/* Mobile: Show icon logo only */}
+      <div className="md:hidden">
+        <img
+          src="/logo-unique.svg"
+          alt="Portfolio Logo"
+          className="h-10 w-10 transition-transform duration-300"
+        />
+      </div>
+
+      {/* Desktop: Show full text logo */}
       <div className={cn(
-        "flex flex-col items-center justify-center",
+        "hidden md:flex flex-col items-center justify-center",
         sizeClasses[size]
       )}>
         <h1 className={cn(
