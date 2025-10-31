@@ -4,10 +4,8 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { FormInput } from '@/components/ui/FormInput';
-import { TextLogo } from '@/components/ui/TextLogo';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { loginUser, clearError } from '@/store/slices/authSlice';
 
@@ -73,18 +71,8 @@ export default function LoginPage() {
       const result = await dispatch(loginUser(data));
 
       if (loginUser.fulfilled.match(result)) {
-        // Success animation
-        if (containerRef.current) {
-          gsap.to(containerRef.current, {
-            scale: 1.05,
-            duration: 0.3,
-            ease: "power2.out",
-            onComplete: () => {
-              // Redirect to home
-              router.push('/');
-            }
-          });
-        }
+        // Direct redirect to home without animation delay
+        router.push('/');
       } else {
         // Error shake animation
         if (containerRef.current) {
@@ -126,36 +114,28 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-900/20 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Enhanced Background Animation */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* iOS-style Gradient Background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-500/10 via-purple-500/5 to-transparent rounded-full"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-indigo-500/20 via-purple-500/10 to-transparent rounded-full"></div>
       </div>
 
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-
       <div className="relative z-10 w-full max-w-md">
-        {/* Logo */}
-        <div className="flex justify-center mb-6">
-          <TextLogo size="lg" variant="dark" />
-        </div>
-
-        {/* Title */}
+        {/* Title - Logo removed */}
         <h1 
           ref={titleRef}
-          className="text-4xl sm:text-5xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+          className="text-5xl sm:text-6xl font-bold text-center text-white mb-4"
         >
           Welcome Back
         </h1>
-        <p className="text-center text-gray-400 mb-8 text-sm sm:text-base">
+        <p className="text-center text-gray-300 mb-8 text-base">
           Sign in to continue your journey
         </p>
 
-        {/* Login Card */}
-        <Card ref={containerRef} variant="glass" className="p-8">
+        {/* Login Card with iOS Glass Effect */}
+        <div ref={containerRef} className="glass-card rounded-3xl p-8 border border-white/20">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <FormInput
               {...register('email')}
@@ -219,7 +199,7 @@ export default function LoginPage() {
               </p>
             </div>
           </form>
-        </Card>
+        </div>
       </div>
 
       {/* Demo credentials section removed (component not defined) */}
