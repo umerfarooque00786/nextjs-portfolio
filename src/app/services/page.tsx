@@ -131,11 +131,11 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">
@@ -149,45 +149,45 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className="service-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="service-card glass-card rounded-3xl p-8 border border-white/20 hover:scale-105 transition-all duration-300"
               >
                 {/* Service Icon */}
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white mb-6">
+                <div className="w-16 h-16 glass-effect rounded-xl flex items-center justify-center text-white mb-6 border border-white/20">
                   {service.icon}
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-white mb-4">
                   {service.title}
                 </h3>
 
                 {/* Service Description */}
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-300 mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 {/* Service Features */}
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-600">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 flex-shrink-0" />
+                    <li key={idx} className="flex items-center text-sm text-gray-300">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
                 </ul>
 
                 {/* Service Price */}
-                <div className="border-t border-gray-200 pt-6">
-                  <p className="text-lg font-semibold text-blue-600 mb-4">
+                <div className="border-t border-white/20 pt-6">
+                  <p className="text-lg font-semibold text-blue-400 mb-4">
                     {service.price}
                   </p>
-                  <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                  <button className="w-full px-6 py-3 glass-effect text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 cursor-pointer">
                     Get Started
                   </button>
                 </div>
@@ -198,13 +198,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               My Development Process
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               A structured approach to deliver high-quality results
             </p>
           </div>
@@ -232,14 +232,14 @@ export default function ServicesPage() {
                 description: 'Testing, deployment, and ongoing support for your project'
               }
             ].map((process, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+              <div key={index} className="text-center glass-card rounded-3xl p-6 border border-white/20">
+                <div className="w-16 h-16 glass-effect rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 border border-white/20">
                   {process.step}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-white mb-2">
                   {process.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-300">
                   {process.description}
                 </p>
               </div>
@@ -249,7 +249,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Ready to Start Your Project?
@@ -260,7 +260,7 @@ export default function ServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold glass-effect text-white rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 hover:bg-white/20 cursor-pointer"
             >
               Get In Touch
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -269,7 +269,7 @@ export default function ServicesPage() {
             </a>
             <a
               href="/projects"
-              className="inline-flex items-center px-8 py-4 text-lg font-semibold bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300"
+              className="inline-flex items-center px-8 py-4 text-lg font-semibold border-2 border-white/30 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 cursor-pointer glass-effect"
             >
               View My Work
             </a>

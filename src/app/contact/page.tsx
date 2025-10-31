@@ -114,11 +114,11 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">
@@ -132,16 +132,16 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl font-bold text-white mb-6">
                   Let's Work Together
                 </h2>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                <p className="text-lg text-gray-300 leading-relaxed mb-8">
                   I'm always interested in new opportunities and exciting projects.
                   Whether you have a question or just want to say hi, I'll try my
                   best to get back to you!
@@ -150,8 +150,8 @@ export default function ContactPage() {
 
               {/* Contact Details */}
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+                  <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center border border-white/20">
                     <svg
                       className="w-6 h-6 text-white"
                       fill="none"
@@ -167,15 +167,15 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Email</p>
-                    <p className="text-gray-900 font-medium text-lg">
+                    <p className="text-gray-400 text-sm">Email</p>
+                    <p className="text-white font-medium text-lg">
                       {PERSONAL_INFO.email}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+                  <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center border border-white/20">
                     <svg
                       className="w-6 h-6 text-white"
                       fill="none"
@@ -197,15 +197,15 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Location</p>
-                    <p className="text-gray-900 font-medium text-lg">
+                    <p className="text-gray-400 text-sm">Location</p>
+                    <p className="text-white font-medium text-lg">
                       {PERSONAL_INFO.location}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+                  <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center border border-white/20">
                     <svg
                       className="w-6 h-6 text-white"
                       fill="none"
@@ -221,8 +221,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-500 text-sm">Phone</p>
-                    <p className="text-gray-900 font-medium text-lg">
+                    <p className="text-gray-400 text-sm">Phone</p>
+                    <p className="text-white font-medium text-lg">
                       {PERSONAL_INFO.phone}
                     </p>
                   </div>
@@ -231,7 +231,7 @@ export default function ContactPage() {
 
               {/* Social Links */}
               <div className="pt-8">
-                <p className="text-gray-600 mb-4 font-medium">Follow me on</p>
+                <p className="text-gray-300 mb-4 font-medium">Follow me on</p>
                 <div className="flex space-x-4">
                   {SOCIAL_LINKS.map((link) => (
                     <a
@@ -240,9 +240,9 @@ export default function ContactPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
-                        "w-12 h-12 bg-white border-2 border-gray-200 rounded-lg flex items-center justify-center",
-                        "text-gray-600 hover:text-white hover:bg-blue-500 hover:border-blue-500",
-                        "transition-all duration-300 transform hover:scale-110"
+                        "w-12 h-12 glass-effect rounded-xl flex items-center justify-center",
+                        "text-gray-300 hover:text-white hover:bg-white/20",
+                        "transition-all duration-300 transform hover:scale-110 border border-white/20"
                       )}
                       aria-label={link.name}
                     >
@@ -254,8 +254,8 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <div className="glass-card rounded-3xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6">
                 Send me a message
               </h3>
               
@@ -264,7 +264,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-white mb-2"
                     >
                       Name *
                     </label>
@@ -275,7 +275,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 glass-effect rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30 transition-all duration-300 hover:bg-white/10"
                       placeholder="Your name"
                     />
                   </div>
@@ -283,7 +283,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-white mb-2"
                     >
                       Email *
                     </label>
@@ -294,7 +294,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 glass-effect rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30 transition-all duration-300 hover:bg-white/10"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -303,7 +303,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-white mb-2"
                   >
                     Subject
                   </label>
@@ -313,7 +313,7 @@ export default function ContactPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 glass-effect rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30 transition-all duration-300 hover:bg-white/10"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -321,7 +321,7 @@ export default function ContactPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-white mb-2"
                   >
                     Message *
                   </label>
@@ -332,7 +332,7 @@ export default function ContactPage() {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 glass-effect rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30 transition-all duration-300 resize-none hover:bg-white/10"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -342,12 +342,11 @@ export default function ContactPage() {
                   type="submit"
                   disabled={isSubmitting}
                   className={cn(
-                    "w-full px-8 py-4 text-lg font-semibold rounded-lg",
-                    "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
-                    "hover:from-blue-600 hover:to-purple-700",
-                    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+                    "w-full px-8 py-4 text-lg font-semibold rounded-2xl",
+                    "glass-effect text-white hover:bg-white/20",
+                    "focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent",
                     "transform transition-all duration-300 hover:scale-105",
-                    "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
                   )}
                 >
                   {isSubmitting ? (

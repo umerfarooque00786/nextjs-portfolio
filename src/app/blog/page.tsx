@@ -140,11 +140,11 @@ export default function BlogPage() {
   const featuredPosts = blogPosts.filter(post => post.featured);
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">
@@ -158,46 +158,46 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Posts */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">
             Featured Articles
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredPosts.map((post) => (
               <article
                 key={post.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="glass-card rounded-3xl overflow-hidden border border-white/20 hover:scale-105 transition-all duration-300"
               >
-                <div className="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <div className="text-white text-6xl font-bold opacity-20">
+                <div className="h-48 glass-effect flex items-center justify-center relative">
+                  <div className="text-white text-6xl font-bold opacity-30">
                     {post.title.charAt(0)}
                   </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">
+                    <span className="px-3 py-1 glass-effect text-blue-300 text-sm font-semibold rounded-full border border-white/20">
                       {post.category}
                     </span>
-                    <span className="text-gray-500 text-sm">{post.readTime}</span>
+                    <span className="text-gray-400 text-sm">{post.readTime}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-gray-300 mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                      <div className="w-8 h-8 glass-effect rounded-full flex items-center justify-center text-white text-sm font-bold border border-white/20">
                         {post.author.charAt(0)}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{post.author}</p>
-                        <p className="text-xs text-gray-500">{new Date(post.date).toLocaleDateString()}</p>
+                        <p className="text-sm font-medium text-white">{post.author}</p>
+                        <p className="text-xs text-gray-400">{new Date(post.date).toLocaleDateString()}</p>
                       </div>
                     </div>
-                    <button className="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                    <button className="text-blue-400 hover:text-blue-300 font-semibold text-sm cursor-pointer transition-colors">
                       Read More →
                     </button>
                   </div>
@@ -209,7 +209,7 @@ export default function BlogPage() {
       </section>
 
       {/* Category Filter */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
@@ -217,10 +217,10 @@ export default function BlogPage() {
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  "px-6 py-3 rounded-lg font-semibold transition-all duration-300",
+                  "px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer",
                   selectedCategory === category
-                    ? "bg-blue-600 text-white shadow-lg"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "glass-effect text-white shadow-lg bg-white/20"
+                    : "glass-effect text-gray-300 hover:text-white hover:bg-white/10"
                 )}
               >
                 {category}
@@ -231,50 +231,50 @@ export default function BlogPage() {
       </section>
 
       {/* All Posts */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-3xl font-bold text-white mb-12 text-center">
             {selectedCategory === 'All' ? 'All Articles' : `${selectedCategory} Articles`}
           </h2>
           <div ref={postsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
               <article
                 key={post.id}
-                className="blog-post bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="blog-post glass-card rounded-2xl overflow-hidden border border-white/20 hover:scale-105 transition-all duration-300"
               >
-                <div className="h-32 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <div className="text-white text-4xl font-bold opacity-20">
+                <div className="h-32 glass-effect flex items-center justify-center">
+                  <div className="text-white text-4xl font-bold opacity-30">
                     {post.title.charAt(0)}
                   </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded">
+                    <span className="px-2 py-1 glass-effect text-gray-300 text-xs font-semibold rounded border border-white/20">
                       {post.category}
                     </span>
-                    <span className="text-gray-500 text-xs">{post.readTime}</span>
+                    <span className="text-gray-400 text-xs">{post.readTime}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-white mb-2 hover:text-blue-400 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
                     {post.excerpt}
                   </p>
                   <div className="flex flex-wrap gap-1 mb-4">
                     {post.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded"
+                        className="px-2 py-1 glass-effect text-blue-300 text-xs rounded border border-white/20"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-gray-400">
                       {new Date(post.date).toLocaleDateString()}
                     </span>
-                    <button className="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                    <button className="text-blue-400 hover:text-blue-300 font-semibold text-sm cursor-pointer transition-colors">
                       Read →
                     </button>
                   </div>
@@ -285,14 +285,14 @@ export default function BlogPage() {
 
           {filteredPosts.length === 0 && (
             <div className="text-center py-20">
-              <p className="text-xl text-gray-600">No articles found for the selected category.</p>
+              <p className="text-xl text-gray-300">No articles found for the selected category.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 bg-gray-900">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             Stay Updated
@@ -304,9 +304,9 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 px-4 py-3 glass-effect rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30"
             />
-            <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
+            <button className="px-6 py-3 glass-effect text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 cursor-pointer">
               Subscribe
             </button>
           </div>

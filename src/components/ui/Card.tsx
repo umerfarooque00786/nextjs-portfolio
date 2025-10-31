@@ -72,9 +72,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(({
   }, [animate, hoverEffect]);
 
   const variantClasses = {
-    default: "bg-gray-900 border border-gray-700",
-    glass: "bg-gray-900/80 backdrop-blur-sm border border-gray-700/50",
-    gradient: "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-gray-700"
+    default: "glass-card border border-white/20",
+    glass: "glass-card border border-white/20",
+    gradient: "glass-card border border-white/20"
   };
 
   return (

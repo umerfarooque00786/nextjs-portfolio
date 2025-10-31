@@ -55,20 +55,21 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       className={cn(
         "relative overflow-hidden rounded-3xl cursor-pointer",
         "h-80 md:h-96",
-        "shadow-xl transition-all duration-300",
-        "hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98]",
-        "transform-gpu",
+        "transition-all duration-300",
+        "hover:scale-[1.02] active:scale-[0.98]",
+        "transform-gpu glass-card-enhanced border border-white/30",
+        "shadow-2xl hover:shadow-3xl hover:border-white/40",
         className
       )}
     >
-      {/* Background Gradient */}
+      {/* Background Gradient with Glass Overlay */}
       <div className={cn(
         "absolute inset-0 bg-gradient-to-br opacity-90",
         gradient
       )} />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/20" />
+      {/* Enhanced Glass Overlay */}
+      <div className="absolute inset-0 bg-black/5 backdrop-blur-md" />
 
       {/* Featured Badge */}
       {project.featured && (

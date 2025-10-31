@@ -85,7 +85,7 @@ const Contact: React.FC = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-20 lg:py-32 bg-gray-900"
+      className="py-20 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -106,8 +106,8 @@ const Contact: React.FC = () => {
 
             {/* Contact Details */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+              <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+                <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -130,8 +130,8 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+              <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+                <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -172,9 +172,9 @@ const Contact: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      "w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center",
-                      "text-gray-400 hover:text-white hover:bg-blue-500",
-                      "transition-all duration-300 transform hover:scale-110"
+                      "w-12 h-12 glass-effect rounded-xl flex items-center justify-center",
+                      "text-gray-300 hover:text-white hover:bg-white/20",
+                      "transition-all duration-300 transform hover:scale-110 border border-white/20"
                     )}
                     aria-label={link.name}
                   >
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-800 rounded-2xl p-8">
+          <div className="glass-card rounded-3xl p-8 border border-white/20">
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
@@ -204,10 +204,10 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     className={cn(
-                      "w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg",
+                      "w-full px-4 py-3 glass-effect rounded-xl",
                       "text-white placeholder-gray-400",
-                      "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                      "transition-all duration-300"
+                      "focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30",
+                      "transition-all duration-300 hover:bg-white/10"
                     )}
                     placeholder="Your name"
                   />
@@ -228,10 +228,10 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     className={cn(
-                      "w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg",
+                      "w-full px-4 py-3 glass-effect rounded-xl",
                       "text-white placeholder-gray-400",
-                      "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                      "transition-all duration-300"
+                      "focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30",
+                      "transition-all duration-300 hover:bg-white/10"
                     )}
                     placeholder="00.umer786@gmail.com"
                   />
@@ -276,10 +276,10 @@ const Contact: React.FC = () => {
                   required
                   rows={6}
                   className={cn(
-                    "w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg",
+                    "w-full px-4 py-3 glass-effect rounded-xl",
                     "text-white placeholder-gray-400 resize-none",
-                    "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                    "transition-all duration-300"
+                    "focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/30",
+                    "transition-all duration-300 hover:bg-white/10"
                   )}
                   placeholder="Tell me about your project..."
                 />
@@ -290,14 +290,13 @@ const Contact: React.FC = () => {
                 ref={submitButtonRef}
                 type="submit"
                 disabled={isSubmitting}
-                className={cn(
-                  "w-full px-8 py-4 text-lg font-semibold rounded-lg",
-                  "bg-gradient-to-r from-blue-500 to-purple-600 text-white",
-                  "hover:from-blue-600 hover:to-purple-700",
-                  "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800",
-                  "transform transition-all duration-300 hover:scale-105",
-                  "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                )}
+                  className={cn(
+                    "w-full px-8 py-4 text-lg font-semibold rounded-2xl",
+                    "glass-effect text-white hover:bg-white/20",
+                    "focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent",
+                    "transform transition-all duration-300 hover:scale-105",
+                    "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  )}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>

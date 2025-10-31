@@ -13,13 +13,13 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="glass-nav border-t border-white/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white">Portfolio</h3>
-            <p className="text-gray-400 leading-relaxed">
+            <h3 className="text-2xl font-bold text-gray-900">Portfolio</h3>
+            <p className="text-gray-700 leading-relaxed">
               Creating exceptional digital experiences with modern web technologies.
             </p>
             <div className="flex space-x-4">
@@ -30,9 +30,9 @@ const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center",
-                    "text-gray-400 hover:text-white hover:bg-blue-500",
-                    "transition-all duration-300 transform hover:scale-110"
+                    "w-10 h-10 glass-effect rounded-xl flex items-center justify-center",
+                    "text-gray-700 hover:text-gray-900 hover:bg-white/30",
+                    "transition-all duration-300 transform hover:scale-110 border border-white/20"
                   )}
                   aria-label={link.name}
                 >
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Quick Links</h4>
+            <h4 className="text-lg font-semibold text-gray-900">Quick Links</h4>
             <nav className="space-y-2">
               {[
                 { name: 'Home', href: '/' },
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                       }
                     }
                   }}
-                  className="block text-gray-400 hover:text-white transition-colors"
+                  className="block text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
                 >
                   {link.name}
                 </button>
@@ -78,14 +78,14 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Get In Touch</h4>
+            <h4 className="text-lg font-semibold text-gray-900">Get In Touch</h4>
             <div className="space-y-2">
-              <p className="text-gray-400">
-                <span className="text-white font-medium">Email:</span><br />
+              <p className="text-gray-700">
+                <span className="text-gray-900 font-medium">Email:</span><br />
                 {PERSONAL_INFO.email}
               </p>
-              <p className="text-gray-400">
-                <span className="text-white font-medium">Location:</span><br />
+              <p className="text-gray-700">
+                <span className="text-gray-900 font-medium">Location:</span><br />
                 {PERSONAL_INFO.location}
               </p>
             </div>
@@ -93,18 +93,18 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-700 text-sm">
               © {currentYear} {PERSONAL_INFO.name}. All rights reserved.
             </p>
-            <div className="flex items-center space-x-6 text-sm text-gray-400">
+            <div className="flex items-center space-x-6 text-sm text-gray-700">
               <span>Built with Next.js, GSAP & Locomotive Scroll</span>
               <button
                 onClick={handleScrollToTop}
                 className={cn(
-                  "flex items-center space-x-2 text-gray-400 hover:text-white",
-                  "transition-colors group"
+                  "flex items-center space-x-2 text-gray-700 hover:text-gray-900",
+                  "transition-colors group cursor-pointer"
                 )}
               >
                 <span>Back to top</span>
