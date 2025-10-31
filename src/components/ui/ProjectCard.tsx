@@ -64,12 +64,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       {/* Background Gradient with Glass Overlay */}
       <div className={cn(
-        "absolute inset-0 bg-gradient-to-br opacity-90",
+        "absolute inset-0 bg-gradient-to-br opacity-40",
         gradient
       )} />
 
-      {/* Enhanced Glass Overlay */}
-      <div className="absolute inset-0 bg-black/5 backdrop-blur-md" />
+      {/* Enhanced Glass Overlay with stronger blur */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
 
       {/* Featured Badge */}
       {project.featured && (

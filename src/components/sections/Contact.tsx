@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
 
             {/* Contact Details */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+              <div className="flex items-center space-x-4 glass-card-enhanced rounded-xl p-4 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4 glass-card rounded-xl p-4 border border-white/20">
+              <div className="flex items-center space-x-4 glass-card-enhanced rounded-xl p-4 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center">
                   <svg
                     className="w-6 h-6 text-white"
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="glass-card rounded-3xl p-8 border border-white/20">
+          <div className="glass-card-enhanced rounded-3xl p-8 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>

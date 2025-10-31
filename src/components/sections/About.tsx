@@ -158,13 +158,13 @@ const About: React.FC = () => {
                 </p>
 
                 <div className="grid grid-cols-2 gap-6 pt-8">
-                  <div className="glass-card rounded-2xl p-6 border border-white/20">
+                  <div className="glass-card-enhanced rounded-2xl p-6 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
                     <h3 className="text-xl font-semibold text-white mb-4">
                       Experience
                     </h3>
                     <p className="text-3xl font-bold text-blue-400">2+ Years</p>
                   </div>
-                  <div className="glass-card rounded-2xl p-6 border border-white/20">
+                  <div className="glass-card-enhanced rounded-2xl p-6 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
                     <h3 className="text-xl font-semibold text-white mb-4">
                       Projects
                     </h3>
@@ -176,7 +176,7 @@ const About: React.FC = () => {
 
             {/* Skills */}
             <div ref={skillsRef} className="space-y-8">
-              <div className="glass-card rounded-2xl p-6 border border-white/20">
+              <div className="glass-card-enhanced rounded-2xl p-6 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
                 <h3 className="text-2xl font-bold text-white mb-6">Skills & Technologies</h3>
 
                 {Object.entries(skillCategories).map(([category, skills]) => (
