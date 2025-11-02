@@ -189,7 +189,7 @@ const Contact: React.FC = () => {
                 <div>
                   <p className="text-gray-400 text-sm">Phone</p>
                   <p className="text-white font-medium">
-                    03003024283
+                    {PERSONAL_INFO.phone}
                   </p>
                 </div>
               </div>

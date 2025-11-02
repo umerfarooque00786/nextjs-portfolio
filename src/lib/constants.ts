@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
     image: "/projects/portfolio.jpg",
     technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS", "Vercel"],
     githubUrl: "https://github.com/umerfarooque00786/nextjs-portfolio",
-    liveUrl: "https://umer-portfolio.vercel.app",
+    liveUrl: "#",
     featured: true,
   },
   {
