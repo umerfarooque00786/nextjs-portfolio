@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '@/lib/constants';
 import { SocialIcon } from '@/components/ui/SocialIcon';
 import { cn } from '@/lib/utils';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,10 +59,9 @@ const Footer: React.FC = () => {
                 <button
                   key={link.name}
                   onClick={() => {
-                    if (link.href === '/' || link.href === '#home') {
-                      window.location.href = '/';
-                    } else if (link.href.startsWith('/')) {
-                      window.location.href = link.href;
+                    if (link.href.startsWith('/')) {
+                      // Use Next.js router for page navigation (no reload)
+                      router.push(link.href);
                     } else {
                       const element = document.querySelector(link.href);
                       if (element) {

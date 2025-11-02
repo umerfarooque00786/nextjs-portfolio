@@ -67,7 +67,7 @@ export default function AboutPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-20 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section ref={heroRef} className="pt-24 sm:pt-28 lg:pt-32 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">

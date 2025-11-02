@@ -10,11 +10,7 @@ import { TextLogo } from '@/components/ui/TextLogo';
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showHorizontalNav, setShowHorizontalNav] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const navRef = useRef<HTMLElement>(null);
-  const horizontalNavRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
   const { user, logout, isAuthenticated } = useAuth();
@@ -37,54 +33,6 @@ const Navigation: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Show horizontal nav on mobile after checking screen size
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setShowHorizontalNav(window.innerWidth < 768);
-    };
-    
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  // Check scroll position for horizontal nav indicators
-  const checkScrollPosition = () => {
-    if (!horizontalNavRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = horizontalNavRef.current;
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
-  };
-
-  // Smooth scroll for horizontal navigation
-  useEffect(() => {
-    if (horizontalNavRef.current && showHorizontalNav) {
-      const activeItem = horizontalNavRef.current.querySelector('.active-nav-item') as HTMLElement;
-      if (activeItem) {
-        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-      // Check initial scroll position
-      setTimeout(checkScrollPosition, 100);
-    }
-  }, [pathname, showHorizontalNav]);
-
-  // Monitor scroll position for horizontal nav
-  useEffect(() => {
-    if (!horizontalNavRef.current || !showHorizontalNav) return;
-
-    const scrollContainer = horizontalNavRef.current;
-    scrollContainer.addEventListener('scroll', checkScrollPosition);
-    window.addEventListener('resize', checkScrollPosition);
-    
-    // Initial check
-    checkScrollPosition();
-
-    return () => {
-      scrollContainer.removeEventListener('scroll', checkScrollPosition);
-      window.removeEventListener('resize', checkScrollPosition);
-    };
-  }, [showHorizontalNav]);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -161,8 +109,8 @@ const Navigation: React.FC = () => {
     setIsMobileMenuOpen(false);
 
     if (href.startsWith('/')) {
-      // Handle regular navigation for pages
-      window.location.href = href;
+      // Handle regular navigation for pages using Next.js router (no reload)
+      router.push(href);
       return;
     }
 
@@ -191,7 +139,7 @@ const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 z-10">
-            <TextLogo size="sm" variant="dark" onClick={() => handleNavClick('#home')} />
+            <TextLogo size="sm" variant="dark" onClick={() => router.push('/')} />
           </div>
 
           {/* Desktop Navigation */}
@@ -286,114 +234,7 @@ const Navigation: React.FC = () => {
           </div>
         </div>
 
-        {/* Horizontal Scrollable Navigation for Mobile */}
-        {showHorizontalNav && !isMobileMenuOpen && (
-          <div className="md:hidden pb-2 pt-1 border-t border-gray-800/50 relative">
-            {/* Left fade gradient */}
-            <div
-              className={cn(
-                "absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none transition-opacity duration-300",
-                canScrollLeft ? "opacity-100" : "opacity-0"
-              )}
-              style={{
-                background: 'linear-gradient(to right, rgba(17, 24, 39, 0.95), transparent)',
-              }}
-            />
-            
-            {/* Right fade gradient */}
-            <div
-              className={cn(
-                "absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none transition-opacity duration-300",
-                canScrollRight ? "opacity-100" : "opacity-0"
-              )}
-              style={{
-                background: 'linear-gradient(to left, rgba(17, 24, 39, 0.95), transparent)',
-              }}
-            />
 
-            {/* Scroll buttons (optional, hidden on very small screens) */}
-            {canScrollLeft && (
-              <button
-                onClick={() => {
-                  if (horizontalNavRef.current) {
-                    horizontalNavRef.current.scrollBy({ left: -100, behavior: 'smooth' });
-                  }
-                }}
-                className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-gray-800/80 hover:bg-gray-700 rounded-full text-white transition-all duration-200 shadow-lg"
-                aria-label="Scroll left"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-            )}
-
-            {canScrollRight && (
-              <button
-                onClick={() => {
-                  if (horizontalNavRef.current) {
-                    horizontalNavRef.current.scrollBy({ left: 100, behavior: 'smooth' });
-                  }
-                }}
-                className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-gray-800/80 hover:bg-gray-700 rounded-full text-white transition-all duration-200 shadow-lg"
-                aria-label="Scroll right"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            )}
-
-            <div
-              ref={horizontalNavRef}
-              className="flex items-center space-x-2 overflow-x-auto scrollbar-hide pb-2 px-2 scroll-smooth"
-              style={{
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-              }}
-            >
-              {navItems.map((item) => {
-                const active = isActive(item.href);
-                return (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.href)}
-                    className={cn(
-                      "flex-shrink-0 px-4 py-2.5 text-sm font-medium rounded-full transition-all duration-300",
-                      "transform active:scale-95 hover:scale-105",
-                      "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-                      "shadow-sm hover:shadow-md",
-                      active && "active-nav-item",
-                      active
-                        ? "text-white bg-gray-900 shadow-lg scale-105 font-semibold border-2 border-gray-900"
-                        : "text-gray-600 bg-white hover:bg-gray-50 hover:text-gray-900 border-2 border-gray-200 hover:border-gray-900"
-                    )}
-                    aria-current={active ? "page" : undefined}
-                  >
-                    {item.name}
-                  </button>
-                );
-              })}
-            </div>
-            
-            {/* Scroll indicator dots */}
-            <div className="flex justify-center mt-2 space-x-1.5">
-              {navItems.map((_, index) => {
-                const active = isActive(navItems[index].href);
-                return (
-                  <div
-                    key={index}
-                    className={cn(
-                      "h-1.5 rounded-full transition-all duration-300",
-                      active ? "w-6 bg-gray-900" : "w-1.5 bg-gray-300"
-                    )}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Mobile dropdown menu */}

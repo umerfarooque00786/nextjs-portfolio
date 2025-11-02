@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
@@ -72,13 +72,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
 
       {/* Featured Badge */}
-      {project.featured && (
+      {/* {project.featured && (
         <div className="absolute top-4 left-4 z-20">
           <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full border border-white/30">
             Featured
           </span>
         </div>
-      )}
+      )} */}
 
       {/* Large Letter Background */}
       <div className="absolute inset-0 flex items-center justify-center">
@@ -90,7 +90,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       {/* Content */}
       <div
         ref={contentRef}
-        className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-10"
+        className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center z-10"
       >
         <div className="space-y-4">
           {/* Title */}

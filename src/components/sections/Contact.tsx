@@ -2,12 +2,16 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
+import emailjs from '@emailjs/browser';
 import { useScrollAnimation, useMagnetic } from "@/hooks/useGSAP";
 // Using direct data attributes for Locomotive Scroll
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { ContactForm } from "@/types";
 import { cn, isValidEmail } from "@/lib/utils";
+
+// Initialize EmailJS
+emailjs.init('2jMePI2n3IvItjHNL'); // EmailJS public key
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -58,24 +62,60 @@ const Contact: React.FC = () => {
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Email to User (Confirmation)
+      const userEmailParams = {
+        name: formData.name,
+        title: formData.subject || 'New Contact Form Submission',
+        email: formData.email,
+        message: formData.message,
+        to_email: formData.email, // Send to user
+      };
+
+      // Email to Admin (Notification)
+      const adminEmailParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || 'New Contact Form Submission',
+        message: formData.message,
+        to_email: PERSONAL_INFO.email, // Send to admin
+      };
+
+      // Send email to user
+      await emailjs.send(
+        'service_vypdyug', // EmailJS service ID
+        'template_6jyt8gx', // EmailJS template ID (user confirmation)
+        userEmailParams
+      );
+
+      // Send email to admin
+      await emailjs.send(
+        'service_vypdyug', // EmailJS service ID
+        'template_qkw39tz', // Admin notification template
+        adminEmailParams
+      );
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
+
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
+      console.error('Email send error:', error);
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
     } finally {
       setIsSubmitting(false);
     }
