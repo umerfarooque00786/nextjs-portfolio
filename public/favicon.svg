@@ -1,33 +1,39 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background circle -->
-  <circle cx="16" cy="16" r="14" fill="url(#gradient)" stroke="url(#borderGradient)" stroke-width="1.5"/>
-  
-  <!-- Letter U -->
-  <path d="M10 8 L10 14 Q10 18 16 18 Q22 18 22 14 L22 8" 
-        stroke="white" 
-        stroke-width="2" 
-        fill="none" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  
-  <!-- Letter F -->
-  <path d="M11 20 L11 25 M11 20 L16 20 M11 22.5 L14.5 22.5" 
-        stroke="white" 
-        stroke-width="1.5" 
-        fill="none" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"/>
-  
-  <!-- Gradients -->
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#A78BFA;stop-opacity:1" />
-    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
   </defs>
+
+  <!-- Main background with rounded corners -->
+  <rect width="200" height="200" fill="url(#bgGradient)" rx="40" filter="url(#shadow)"/>
+
+  <!-- Code brackets icon -->
+  <g transform="translate(100, 70)">
+    <!-- Left bracket < -->
+    <path d="M -25 -15 L -5 0 L -25 15" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Vertical line / -->
+    <line x1="0" y1="-20" x2="0" y2="20" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Right bracket > -->
+    <path d="M 25 -15 L 5 0 L 25 15" stroke="#94a3b8" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Text: Umer Farooque -->
+  <text x="100" y="145" font-size="18" font-weight="700" text-anchor="middle" fill="#1e293b" font-family="system-ui, -apple-system, sans-serif">
+    Umer Farooque
+  </text>
+
+  <!-- Text: FRONT-END DEVELOPER -->
+  <text x="100" y="168" font-size="11" font-weight="600" text-anchor="middle" fill="#475569" font-family="system-ui, -apple-system, sans-serif" letter-spacing="2">
+    FRONT-END DEVELOPER
+  </text>
+
+  <!-- Decorative line under title -->
+  <line x1="70" y1="175" x2="130" y2="175" stroke="#64748b" stroke-width="1.5"/>
 </svg>
