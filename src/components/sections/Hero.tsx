@@ -42,7 +42,11 @@ const Hero: React.FC = () => {
 
   // Main hero animations
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     if (!heroRef.current) return;
+    
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
 
     // Animate description
     if (descriptionRef.current) {
@@ -118,6 +122,10 @@ const Hero: React.FC = () => {
         scrub: true,
       },
     });
+
+    return () => {
+      ScrollTrigger.killAll();
+    };
   }, []);
 
   const handleScrollToProjects = () => {

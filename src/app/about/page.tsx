@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navigation from '@/components/ui/Navigation';
-import Footer from '@/components/ui/Footer';
-import { PERSONAL_INFO, SKILLS, EXPERIENCE } from '@/lib/constants';
-import { cn } from '@/lib/utils';
+import React, { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navigation from "@/components/ui/Navigation";
+import Footer from "@/components/ui/Footer";
+import { PERSONAL_INFO, SKILLS, EXPERIENCE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 export default function AboutPage() {
   const heroRef = useRef<HTMLElement>(null);
@@ -14,37 +14,39 @@ export default function AboutPage() {
   const experienceRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
 
     // Hero animation
     if (heroRef.current) {
-      gsap.fromTo(heroRef.current.children,
+      gsap.fromTo(
+        heroRef.current.children,
         { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
           duration: 1,
           stagger: 0.2,
-          ease: 'power2.out'
+          ease: "power2.out",
         }
       );
     }
 
     // Skills animation
     if (skillsRef.current) {
-      const skillBars = skillsRef.current.querySelectorAll('.skill-bar');
-      gsap.fromTo(skillBars,
-        { width: '0%' },
+      const skillBars = skillsRef.current.querySelectorAll(".skill-bar");
+      gsap.fromTo(
+        skillBars,
+        { width: "0%" },
         {
-          width: (index, target) => target.getAttribute('data-level') + '%',
+          width: (index, target) => target.getAttribute("data-level") + "%",
           duration: 1.5,
           stagger: 0.1,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: skillsRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            start: "top 80%",
+            toggleActions: "play none none reverse",
           },
         }
       );
@@ -56,25 +58,30 @@ export default function AboutPage() {
   }, []);
 
   const skillCategories = {
-    frontend: SKILLS.filter(skill => skill.category === 'frontend'),
-    backend: SKILLS.filter(skill => skill.category === 'backend'),
-    tools: SKILLS.filter(skill => skill.category === 'tools'),
-    design: SKILLS.filter(skill => skill.category === 'design'),
+    frontend: SKILLS.filter((skill) => skill.category === "frontend"),
+    backend: SKILLS.filter((skill) => skill.category === "backend"),
+    tools: SKILLS.filter((skill) => skill.category === "tools"),
+    design: SKILLS.filter((skill) => skill.category === "design"),
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-40 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section
+        ref={heroRef}
+        className="pt-40 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">
               About <span className="text-blue-400">Me</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Full Stack Developer with 3+ years of experience in web development, specializing in modern technologies and continuously growing my skills
+              Full Stack Developer with 3+ years of experience in web
+              development, specializing in modern technologies and continuously
+              growing my skills
             </p>
           </div>
         </div>
@@ -101,22 +108,24 @@ export default function AboutPage() {
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
               <p className="text-lg text-gray-300 leading-relaxed">
-                I'm a passionate full-stack developer with 2+ years of experience
-                in web development. I have 2 years of solid experience in custom WordPress
-                development, PHP, and Laravel as a full-stack developer, plus 1 year
-                of specialized experience in Next.js development.
+                I'm a passionate full-stack developer with 2+ years of
+                experience in web development. I have 2 years of solid
+                experience in custom WordPress development, PHP, and Laravel as
+                a full-stack developer, plus 1 year of specialized experience in
+                Next.js development.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                My journey started with WordPress and PHP development, where I learned
-                to create custom themes, plugins, and full-stack web applications.
-                I then expanded my skills to include Laravel for more complex backend
-                solutions and database management.
+                My journey started with WordPress and PHP development, where I
+                learned to create custom themes, plugins, and full-stack web
+                applications. I then expanded my skills to include Laravel for
+                more complex backend solutions and database management.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                Currently, I'm growing and polishing my skills in modern technologies
-                like Next.js and React. I believe in continuous learning and constantly
-                work on improving my expertise to deliver better solutions. I'm passionate
-                about staying up-to-date with the latest industry trends and best practices.
+                Currently, I'm growing and polishing my skills in modern
+                technologies like Next.js and React. I believe in continuous
+                learning and constantly work on improving my expertise to
+                deliver better solutions. I'm passionate about staying
+                up-to-date with the latest industry trends and best practices.
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-8">
@@ -146,13 +155,20 @@ export default function AboutPage() {
               Skills & Technologies
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Here are the technologies and tools I work with to bring ideas to life
+              Here are the technologies and tools I work with to bring ideas to
+              life
             </p>
           </div>
 
-          <div ref={skillsRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            ref={skillsRef}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             {Object.entries(skillCategories).map(([category, skills]) => (
-              <div key={category} className="glass-card rounded-3xl p-6 border border-white/20 space-y-6">
+              <div
+                key={category}
+                className="glass-card rounded-3xl p-6 border border-white/20 space-y-6"
+              >
                 <h3 className="text-2xl font-bold text-white capitalize">
                   {category}
                 </h3>
@@ -171,13 +187,17 @@ export default function AboutPage() {
                         <div
                           className={cn(
                             "skill-bar h-3 rounded-full transition-all duration-300",
-                            category === 'frontend' && "bg-gradient-to-r from-blue-400 to-blue-600",
-                            category === 'backend' && "bg-gradient-to-r from-green-400 to-green-600",
-                            category === 'tools' && "bg-gradient-to-r from-purple-400 to-purple-600",
-                            category === 'design' && "bg-gradient-to-r from-pink-400 to-pink-600"
+                            category === "frontend" &&
+                            "bg-gradient-to-r from-blue-400 to-blue-600",
+                            category === "backend" &&
+                            "bg-gradient-to-r from-green-400 to-green-600",
+                            category === "tools" &&
+                            "bg-gradient-to-r from-purple-400 to-purple-600",
+                            category === "design" &&
+                            "bg-gradient-to-r from-pink-400 to-pink-600"
                           )}
                           data-level={skill.level}
-                          style={{ width: '0%' }}
+                          style={{ width: "0%" }}
                         />
                       </div>
                     </div>
@@ -203,7 +223,10 @@ export default function AboutPage() {
 
           <div ref={experienceRef} className="space-y-8">
             {EXPERIENCE.map((exp, index) => (
-              <div key={exp.id} className="glass-card rounded-3xl p-8 border border-white/20">
+              <div
+                key={exp.id}
+                className="glass-card rounded-3xl p-8 border border-white/20"
+              >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                   <div>
                     <h3 className="text-2xl font-bold text-white">
