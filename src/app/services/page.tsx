@@ -135,7 +135,7 @@ export default function ServicesPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-40 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section ref={heroRef} className="pt-24 sm:pt-28 lg:pt-32 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">
@@ -151,43 +151,43 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={servicesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className="service-card glass-card rounded-3xl p-8 border border-white/20 hover:scale-105 transition-all duration-300"
+                className="service-card glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20 hover:scale-[1.02] sm:hover:scale-105 transition-all duration-300 flex flex-col"
               >
                 {/* Service Icon */}
-                <div className="w-16 h-16 glass-effect rounded-xl flex items-center justify-center text-white mb-6 border border-white/20">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 glass-effect rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 border border-white/20">
                   {service.icon}
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                   {service.title}
                 </h3>
 
                 {/* Service Description */}
-                <p className="text-gray-300 mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-6 leading-relaxed flex-grow">
                   {service.description}
                 </p>
 
                 {/* Service Features */}
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-4 sm:mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-300">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0" />
-                      {feature}
+                    <li key={idx} className="flex items-start text-xs sm:text-sm text-gray-300">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full mr-2 sm:mr-3 flex-shrink-0 mt-1.5 sm:mt-1" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Service Price */}
-                <div className="border-t border-white/20 pt-6">
-                  <p className="text-lg font-semibold text-blue-400 mb-4">
+                <div className="border-t border-white/20 pt-4 sm:pt-6 mt-auto">
+                  <p className="text-base sm:text-lg font-semibold text-blue-400 mb-3 sm:mb-4">
                     {service.price}
                   </p>
-                  <button className="w-full px-6 py-3 glass-effect text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                  <button className="w-full px-4 sm:px-6 py-2.5 sm:py-3 glass-effect text-white rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer">
                     Get Started
                   </button>
                 </div>

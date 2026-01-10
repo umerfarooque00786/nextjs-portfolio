@@ -2,12 +2,16 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
+import emailjs from '@emailjs/browser';
 import { useScrollAnimation, useMagnetic } from "@/hooks/useGSAP";
 // Using direct data attributes for Locomotive Scroll
 import { PERSONAL_INFO, SOCIAL_LINKS } from "@/lib/constants";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { ContactForm } from "@/types";
 import { cn, isValidEmail } from "@/lib/utils";
+
+// Initialize EmailJS
+emailjs.init('2jMePI2n3IvItjHNL'); // EmailJS public key
 
 const Contact: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -58,24 +62,60 @@ const Contact: React.FC = () => {
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
       return;
     }
 
     if (!isValidEmail(formData.email)) {
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Email to User (Confirmation)
+      const userEmailParams = {
+        name: formData.name,
+        title: formData.subject || 'New Contact Form Submission',
+        email: formData.email,
+        message: formData.message,
+        to_email: formData.email, // Send to user
+      };
+
+      // Email to Admin (Notification)
+      const adminEmailParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject || 'New Contact Form Submission',
+        message: formData.message,
+        to_email: PERSONAL_INFO.email, // Send to admin
+      };
+
+      // Send email to user
+      await emailjs.send(
+        'service_vypdyug', // EmailJS service ID
+        'template_6jyt8gx', // EmailJS template ID (user confirmation)
+        userEmailParams
+      );
+
+      // Send email to admin
+      await emailjs.send(
+        'service_vypdyug', // EmailJS service ID
+        'template_qkw39tz', // Admin notification template
+        adminEmailParams
+      );
 
       setSubmitStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
+
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
+      console.error('Email send error:', error);
       setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus('idle'), 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -126,6 +166,30 @@ const Contact: React.FC = () => {
                   <p className="text-gray-400 text-sm">Email</p>
                   <p className="text-white font-medium">
                     {PERSONAL_INFO.email}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-4 glass-card-enhanced rounded-xl p-4 border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-12 h-12 glass-effect rounded-xl flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-gray-400 text-sm">Phone</p>
+                  <p className="text-white font-medium">
+                    {PERSONAL_INFO.phone}
                   </p>
                 </div>
               </div>

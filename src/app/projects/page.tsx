@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
@@ -65,8 +65,8 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
       
-      {/* Hero Section */}
-      <section ref={heroRef} className="pt-40 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Hero Section - Fixed padding to prevent header overlap */}
+      <section ref={heroRef} className="pt-32 sm:pt-36 lg:pt-40 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <h1 className="text-5xl lg:text-7xl font-bold text-white">

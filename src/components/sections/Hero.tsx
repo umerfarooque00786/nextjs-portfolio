@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRouter } from 'next/navigation';
 // Removed SimpleScrollElement import - using direct data attributes
 import { PERSONAL_INFO, SOCIAL_LINKS } from '@/lib/constants';
 import { animations, advancedAnimations } from '@/lib/animations';
@@ -10,6 +11,7 @@ import { SocialIcon } from '@/components/ui/SocialIcon';
 import { cn } from '@/lib/utils';
 
 const Hero: React.FC = () => {
+  const router = useRouter();
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -133,8 +135,8 @@ const Hero: React.FC = () => {
     if (projectsSection) {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
     } else {
-      // If projects section doesn't exist, navigate to projects page
-      window.location.href = '/projects';
+      // If projects section doesn't exist, navigate to projects page using Next.js router
+      router.push('/projects');
     }
   };
 
@@ -151,7 +153,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
           <div className="space-y-8">
             {/* Main Title */}
             <h1

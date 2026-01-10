@@ -27,10 +27,16 @@ export const TextLogo: React.FC<TextLogoProps> = ({
     }
   };
 
-  const sizeClasses = {
-    sm: 'h-12',
-    md: 'h-16',
-    lg: 'h-20',
+  const paddingClasses = {
+    sm: 'px-6 py-2.5',
+    md: 'px-8 py-3',
+    lg: 'px-10 py-4',
+  };
+
+  const textClasses = {
+    sm: 'text-2xl sm:text-3xl',
+    md: 'text-3xl sm:text-4xl',
+    lg: 'text-4xl sm:text-5xl',
   };
 
   return (
@@ -38,58 +44,30 @@ export const TextLogo: React.FC<TextLogoProps> = ({
       onClick={handleClick}
       className={cn(
         "flex items-center justify-center transition-all duration-300",
-        "hover:opacity-80 active:opacity-70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded",
-        "cursor-pointer",
+        "hover:scale-105 active:scale-95",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2",
+        variant === 'dark' ? "focus:ring-gray-300" : "focus:ring-gray-600",
+        "cursor-pointer rounded-full shadow-lg",
+        variant === 'dark'
+          ? "bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400"
+          : "bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900",
+        paddingClasses[size],
         className
       )}
       aria-label="Home"
+      style={{
+        boxShadow: variant === 'dark'
+          ? '0 8px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(0, 0, 0, 0.2)'
+          : '0 8px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.3)'
+      }}
     >
-      {/* Mobile: Show icon logo only */}
-      <div className="md:hidden">
-        <img
-          src="/logo-unique.svg"
-          alt="Portfolio Logo"
-          className="h-10 w-10 transition-transform duration-300"
-        />
-      </div>
-
-      {/* Desktop: Show full text logo */}
-      <div className={cn(
-        "hidden md:flex flex-col items-center justify-center",
-        sizeClasses[size]
+      <h1 className={cn(
+        "font-black tracking-wide whitespace-nowrap",
+        textClasses[size],
+        variant === 'dark' ? "text-gray-900" : "text-white"
       )}>
-        <h1 className={cn(
-          "font-bold tracking-tight",
-          size === 'sm' && "text-2xl",
-          size === 'md' && "text-3xl sm:text-4xl",
-          size === 'lg' && "text-4xl sm:text-5xl",
-          variant === 'dark' ? "text-gray-900" : "text-white"
-        )}>
-          Umer Farooque
-        </h1>
-        <div className={cn(
-          "mt-1 flex flex-col items-center",
-          size === 'sm' && "gap-1",
-          size === 'md' && "gap-1.5",
-          size === 'lg' && "gap-2"
-        )}>
-          <p className={cn(
-            "uppercase tracking-wider font-normal",
-            size === 'sm' && "text-xs",
-            size === 'md' && "text-xs sm:text-sm",
-            size === 'lg' && "text-sm sm:text-base",
-            variant === 'dark' ? "text-gray-700" : "text-gray-300"
-          )}>
-            FRONT-END DEVELOPER
-          </p>
-          <div className={cn(
-            variant === 'dark' ? "bg-gray-900" : "bg-white",
-            size === 'sm' && "w-24 h-px",
-            size === 'md' && "w-32 sm:w-40 h-0.5",
-            size === 'lg' && "w-40 sm:w-48 h-0.5"
-          )} />
-        </div>
-      </div>
+        UMER
+      </h1>
     </button>
   );
 };

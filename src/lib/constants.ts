@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   name: "Umer Farooque",
   title: "Full Stack Developer",
   email: "00.umer786@gmail.com",
-  phone: "+92 (300) 123-4567",
+  phone: "03003024283",
   location: "Pakistan",
   bio: "Passionate full-stack developer with 3+ years of experience in web development. I specialize in custom WordPress, PHP, Laravel, and Next.js development. Currently growing my skills and polishing my expertise in modern web technologies to deliver exceptional digital solutions.",
 };
@@ -65,7 +65,7 @@ export const PROJECTS: Project[] = [
     image: "/projects/portfolio.jpg",
     technologies: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS", "Vercel"],
     githubUrl: "https://github.com/umerfarooque00786/nextjs-portfolio",
-    liveUrl: "https://umer-portfolio.vercel.app",
+    liveUrl: "#",
     featured: true,
   },
   {
