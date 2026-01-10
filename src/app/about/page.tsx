@@ -69,13 +69,13 @@ export default function AboutPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-24 sm:pt-28 lg:pt-32 pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section ref={heroRef} className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-8">
-            <h1 className="text-5xl lg:text-7xl font-bold text-white">
+          <div className="text-center space-y-4 sm:space-y-6 md:space-y-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
               About <span className="text-blue-400">Me</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
               Full Stack Developer with 3+ years of experience in web
               development, specializing in modern technologies and continuously
               growing my skills
@@ -85,9 +85,9 @@ export default function AboutPage() {
       </section>
 
       {/* About Content */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             {/* Profile Image */}
             <div className="relative">
               <div className="glass-card rounded-3xl p-1 border border-white/20">
@@ -100,11 +100,11 @@ export default function AboutPage() {
             </div>
 
             {/* About Text */}
-            <div className="space-y-6 glass-card rounded-3xl p-8 border border-white/20">
-              <h2 className="text-4xl font-bold text-white">
+            <div className="space-y-4 sm:space-y-6 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 I'm a passionate full-stack developer with 2+ years of
                 experience in web development. I have 2 years of solid
                 experience in custom WordPress development, PHP, and Laravel as
@@ -125,18 +125,18 @@ export default function AboutPage() {
                 up-to-date with the latest industry trends and best practices.
               </p>
 
-              <div className="grid grid-cols-2 gap-6 pt-8">
-                <div className="glass-effect rounded-xl p-4 border border-white/20">
-                  <h3 className="text-xl font-semibold text-white mb-2">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 sm:pt-8">
+                <div className="glass-effect rounded-xl p-4 sm:p-6 border border-white/20">
+                  <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">
                     Experience
                   </h3>
-                  <p className="text-3xl font-bold text-blue-400">2+ Years</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-400">2+ Years</p>
                 </div>
-                <div className="glass-effect rounded-xl p-4 border border-white/20">
-                  <h3 className="text-xl font-semibold text-white mb-2">
+                <div className="glass-effect rounded-xl p-4 sm:p-6 border border-white/20">
+                  <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">
                     Projects
                   </h3>
-                  <p className="text-3xl font-bold text-purple-400">50+</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-purple-400">50+</p>
                 </div>
               </div>
             </div>
@@ -145,13 +145,13 @@ export default function AboutPage() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Skills & Technologies
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               Here are the technologies and tools I work with to bring ideas to
               life
             </p>
@@ -159,24 +159,24 @@ export default function AboutPage() {
 
           <div
             ref={skillsRef}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
           >
             {Object.entries(skillCategories).map(([category, skills]) => (
               <div
                 key={category}
-                className="glass-card rounded-3xl p-6 border border-white/20 space-y-6"
+                className="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/20 space-y-4 sm:space-y-6"
               >
-                <h3 className="text-2xl font-bold text-white capitalize">
+                <h3 className="text-xl sm:text-2xl font-bold text-white capitalize">
                   {category}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {skills.map((skill) => (
                     <div key={skill.name} className="skill-item">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-lg font-medium text-white">
+                        <span className="text-sm sm:text-base md:text-lg font-medium text-white">
                           {skill.name}
                         </span>
-                        <span className="text-sm text-gray-400">
+                        <span className="text-xs sm:text-sm text-gray-400">
                           {skill.level}%
                         </span>
                       </div>
@@ -207,33 +207,33 @@ export default function AboutPage() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Work Experience
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
               My professional journey and the companies I've worked with
             </p>
           </div>
 
-          <div ref={experienceRef} className="space-y-8">
+          <div ref={experienceRef} className="space-y-6 sm:space-y-8">
             {EXPERIENCE.map((exp, index) => (
               <div
                 key={exp.id}
-                className="glass-card rounded-3xl p-8 border border-white/20"
+                className="glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20"
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 sm:mb-6 gap-3">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
                       {exp.position}
                     </h3>
-                    <p className="text-xl text-blue-400 font-semibold">
+                    <p className="text-lg sm:text-xl text-blue-400 font-semibold">
                       {exp.company}
                     </p>
                   </div>
-                  <div className="text-gray-400 font-medium">
+                  <div className="text-sm sm:text-base text-gray-400 font-medium">
                     {exp.duration}
                   </div>
                 </div>

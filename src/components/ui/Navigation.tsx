@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
@@ -105,23 +106,16 @@ const Navigation: React.FC = () => {
     return pathname.startsWith(href);
   };
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, e?: React.MouseEvent) => {
     setIsMobileMenuOpen(false);
 
-    if (href.startsWith('/')) {
-      // Handle regular navigation for pages using Next.js router (no reload)
-      router.push(href);
-      return;
-    }
-
-    if (href === '#home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Next.js Link will handle navigation without reload
+    // No need to prevent default or use router.push
+    if (href === '#home' || href === '/') {
+      if (pathname === '/') {
+        e?.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -148,9 +142,10 @@ const Navigation: React.FC = () => {
               {navItems.map((item) => {
                 const active = isActive(item.href);
                 return (
-                  <button
+                  <Link
                     key={item.name}
-                    onClick={() => handleNavClick(item.href)}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(item.href, e)}
                     className={cn(
                       "nav-item px-3 py-2 text-sm font-medium transition-all duration-300",
                       "relative group transform active:scale-95",
@@ -166,7 +161,7 @@ const Navigation: React.FC = () => {
                       "absolute bottom-0 left-0 h-0.5 bg-gray-900 transition-all duration-300 rounded-full",
                       active ? "w-full" : "w-0 group-hover:w-full"
                     )} />
-                  </button>
+                  </Link>
                 );
               })}
             </div>
@@ -252,9 +247,10 @@ const Navigation: React.FC = () => {
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => handleNavClick(item.href)}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(item.href, e)}
                   className={cn(
                     "block px-4 py-3.5 text-base font-medium rounded-lg transition-all duration-300 w-full text-left transform",
                     "focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:ring-offset-white",
@@ -281,7 +277,7 @@ const Navigation: React.FC = () => {
                       </svg>
                     )}
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>
