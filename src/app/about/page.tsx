@@ -94,7 +94,7 @@ export default function AboutPage() {
               <div className="glass-card rounded-3xl p-1 border border-white/20 overflow-hidden">
                 <div className="w-full aspect-square glass-effect rounded-3xl relative overflow-hidden">
                   <Image
-                    src="/professional.png"
+                    src="/projects/professional.png"
                     alt={`${PERSONAL_INFO.name} - Full Stack Developer`}
                     fill
                     className="object-cover rounded-3xl"
@@ -117,25 +117,19 @@ export default function AboutPage() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-3">
-                I'm a passionate full-stack developer with 2+ years of
-                experience in web development. I have 2 years of solid
-                experience in custom WordPress development, PHP, and Laravel as
-                a full-stack developer, plus 1 year of specialized experience in
-                Next.js development.
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
+                I'm a passionate full-stack developer with 2+ years of experience in web development. 
+                I specialize in custom WordPress, PHP, Laravel, and Next.js development.
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                My journey started with WordPress and PHP development, where I
-                learned to create custom themes, plugins, and full-stack web
-                applications. I then expanded my skills to include Laravel for
-                more complex backend solutions and database management.
+                My journey started with WordPress and PHP, where I learned to create custom themes, 
+                plugins, and full-stack applications. I then expanded to Laravel for complex backend 
+                solutions and database management.
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
-                Currently, I'm growing and polishing my skills in modern
-                technologies like Next.js and React. I believe in continuous
-                learning and constantly work on improving my expertise to
-                deliver better solutions. I'm passionate about staying
-                up-to-date with the latest industry trends and best practices.
+                Currently, I'm focused on modern technologies like Next.js and React. I believe in 
+                continuous learning and staying up-to-date with the latest industry trends to deliver 
+                better solutions.
               </p>
 
               <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-6 sm:pt-8">
