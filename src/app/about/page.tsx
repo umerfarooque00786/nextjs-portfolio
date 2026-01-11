@@ -77,7 +77,7 @@ export default function AboutPage() {
               About <span className="text-blue-400">Me</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
-              Full Stack Developer with 3+ years of experience in web
+              Full Stack Developer with 2+ years of experience in web
               development, specializing in modern technologies and continuously
               growing my skills
             </p>
@@ -94,7 +94,7 @@ export default function AboutPage() {
               <div className="glass-card rounded-3xl p-1 border border-white/20 overflow-hidden">
                 <div className="w-full aspect-square glass-effect rounded-3xl relative overflow-hidden">
                   <Image
-                    src="/profile.jpg"
+                    src="/professional.png"
                     alt={`${PERSONAL_INFO.name} - Full Stack Developer`}
                     fill
                     className="object-cover rounded-3xl"
