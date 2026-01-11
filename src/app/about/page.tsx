@@ -69,9 +69,9 @@ export default function AboutPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section ref={heroRef} className="pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section ref={heroRef} className="pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-16 sm:pb-20 md:pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="text-center space-y-6 sm:space-y-8 md:space-y-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
               About <span className="text-blue-400">Me</span>
             </h1>
@@ -85,14 +85,14 @@ export default function AboutPage() {
       </section>
 
       {/* About Content */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 lg:gap-20 items-center">
             {/* Profile Image */}
-            <div className="relative">
+            <div className="relative mb-6 sm:mb-0">
               <div className="glass-card rounded-3xl p-1 border border-white/20">
                 <div className="w-full aspect-square glass-effect rounded-3xl flex items-center justify-center">
-                  <div className="text-6xl font-bold text-white">
+                  <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-white">
                     {PERSONAL_INFO.name.charAt(0)}
                   </div>
                 </div>
@@ -100,11 +100,11 @@ export default function AboutPage() {
             </div>
 
             {/* About Text */}
-            <div className="space-y-4 sm:space-y-6 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+            <div className="space-y-5 sm:space-y-6 md:space-y-7 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-white/20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-3">
                 I'm a passionate full-stack developer with 2+ years of
                 experience in web development. I have 2 years of solid
                 experience in custom WordPress development, PHP, and Laravel as
@@ -145,9 +145,9 @@ export default function AboutPage() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="text-center mb-10 sm:mb-14 md:mb-18 lg:mb-20">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Skills & Technologies
             </h2>
@@ -207,9 +207,9 @@ export default function AboutPage() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="text-center mb-10 sm:mb-14 md:mb-18 lg:mb-20">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Work Experience
             </h2>
