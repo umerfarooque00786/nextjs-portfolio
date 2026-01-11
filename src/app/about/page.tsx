@@ -111,13 +111,13 @@ export default function AboutPage() {
                 a full-stack developer, plus 1 year of specialized experience in
                 Next.js development.
               </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
                 My journey started with WordPress and PHP development, where I
                 learned to create custom themes, plugins, and full-stack web
                 applications. I then expanded my skills to include Laravel for
                 more complex backend solutions and database management.
               </p>
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed mb-4">
                 Currently, I'm growing and polishing my skills in modern
                 technologies like Next.js and React. I believe in continuous
                 learning and constantly work on improving my expertise to
