@@ -88,22 +88,23 @@ export default function AboutPage() {
       {/* About Content */}
       <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 lg:gap-20 items-stretch">
             {/* Profile Image */}
-            <div className="relative mb-6 sm:mb-0">
-              <div className="glass-card rounded-3xl p-1 border border-white/20 overflow-hidden">
-                <div className="w-full aspect-square glass-effect rounded-3xl relative overflow-hidden">
+            <div className="relative mb-6 sm:mb-0 flex">
+              <div className="glass-card rounded-3xl p-1 border border-white/20 overflow-hidden w-full">
+                <div className="w-full h-full min-h-[400px] sm:min-h-[500px] glass-effect rounded-3xl relative overflow-hidden">
                   <Image
                     src="/projects/professional.png"
                     alt={`${PERSONAL_INFO.name} - Full Stack Developer`}
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-contain rounded-3xl"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority
                     quality={90}
+                    style={{ objectPosition: 'center' }}
                   />
                   {/* Fallback initial if image doesn't load */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20">
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500/20 to-purple-500/20 pointer-events-none">
                     <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-white opacity-30">
                       {PERSONAL_INFO.name.charAt(0)}
                     </div>
@@ -113,7 +114,7 @@ export default function AboutPage() {
             </div>
 
             {/* About Text */}
-            <div className="space-y-5 sm:space-y-6 md:space-y-7 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-white/20">
+            <div className="space-y-5 sm:space-y-6 md:space-y-7 glass-card rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-white/20 flex flex-col h-full min-h-[400px] sm:min-h-[500px]">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                 Hi, I'm {PERSONAL_INFO.name}
               </h2>
