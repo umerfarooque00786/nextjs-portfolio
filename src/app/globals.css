@@ -3,6 +3,14 @@
 /* Native smooth scrolling */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
 }
 
 :root {
@@ -340,21 +348,45 @@ button, a, input, textarea, select {
 
 /* Enhanced mobile responsiveness */
 @media (max-width: 768px) {
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100%;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
   /* Better spacing on mobile */
   section {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    overflow-x: hidden;
   }
   
   /* Improved text readability */
   p {
     font-size: 1rem;
     line-height: 1.75;
+    word-wrap: break-word;
   }
   
   /* Better button sizing */
   button {
     min-height: 44px;
+  }
+  
+  /* Container fixes */
+  .max-w-7xl,
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 

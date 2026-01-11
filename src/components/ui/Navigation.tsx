@@ -129,8 +129,8 @@ const Navigation: React.FC = () => {
           : "glass-nav"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full overflow-x-hidden">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20 w-full">
           {/* Logo */}
           <div className="flex-shrink-0 z-10">
             <TextLogo size="sm" variant="dark" onClick={() => router.push('/')} />
